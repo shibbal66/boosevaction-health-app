@@ -9,22 +9,38 @@
 /* Begin PBXBuildFile section */
 		092FB1CA1527D2AFF6624F19 /* libPods-boosevacation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3BB779C8545D2A33B25ADDD /* libPods-boosevacation.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1543D6B92DC14F03831AE5CE /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E115C660E43420C90FF2AD9 /* SF-Pro-Text-Bold.otf */; };
+		5AF84E695F114493BE1F2694 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 58414AA970D04BF382FB04D9 /* SF-Pro-Text-Regular.otf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		7A8DA0AA05DF41E0B88C709F /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22E0BC9C086E4849A4EDEE27 /* SF-Pro-Rounded-Semibold.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		85CF864020954D66BFF14617 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09885E7C07604A60B046323C /* SF-Pro-Text-Semibold.otf */; };
+		89E22C4FCAE14463AE2AFDB9 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5695CD6AE47E45D497D4AFF6 /* SF-Pro-Text-Medium.otf */; };
+		A55840AA8FB244508B291DAF /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FD35F72325954A7BB2A67788 /* SF-Pro-Rounded-Regular.otf */; };
+		A59DE0E3C1544031A1B22E58 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 18687E4FAA2F4D3BA0D9125B /* SF-Pro-Rounded-Bold.otf */; };
 		AA43D9E9039181513017B7F8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		CA166A39603A4A6C94341586 /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8C83F5930DED4D3CB8B8CCF4 /* SF-Pro-Rounded-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04E84C19F814FF659D22AC2E /* Pods-boosevacation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boosevacation.release.xcconfig"; path = "Target Support Files/Pods-boosevacation/Pods-boosevacation.release.xcconfig"; sourceTree = "<group>"; };
+		09885E7C07604A60B046323C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-Semibold.otf"; path = "../assets/fonts/SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* boosevacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boosevacation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = boosevacation/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = boosevacation/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = boosevacation/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		18687E4FAA2F4D3BA0D9125B /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Bold.otf"; path = "../assets/fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
+		22E0BC9C086E4849A4EDEE27 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Semibold.otf"; path = "../assets/fonts/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
+		2E115C660E43420C90FF2AD9 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-Bold.otf"; path = "../assets/fonts/SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
+		5695CD6AE47E45D497D4AFF6 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-Medium.otf"; path = "../assets/fonts/SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		58414AA970D04BF382FB04D9 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Text-Regular.otf"; path = "../assets/fonts/SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = boosevacation/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boosevacation/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C83F5930DED4D3CB8B8CCF4 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Medium.otf"; path = "../assets/fonts/SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
 		9A01A38D2D8F91E3674BCEA4 /* Pods-boosevacation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boosevacation.debug.xcconfig"; path = "Target Support Files/Pods-boosevacation/Pods-boosevacation.debug.xcconfig"; sourceTree = "<group>"; };
 		B3BB779C8545D2A33B25ADDD /* libPods-boosevacation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boosevacation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FD35F72325954A7BB2A67788 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Regular.otf"; path = "../assets/fonts/SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +91,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				BB458D520CBF46C49A4529D7 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -87,6 +104,22 @@
 				13B07F961A680F5B00A75B9A /* boosevacation.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BB458D520CBF46C49A4529D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				18687E4FAA2F4D3BA0D9125B /* SF-Pro-Rounded-Bold.otf */,
+				8C83F5930DED4D3CB8B8CCF4 /* SF-Pro-Rounded-Medium.otf */,
+				FD35F72325954A7BB2A67788 /* SF-Pro-Rounded-Regular.otf */,
+				22E0BC9C086E4849A4EDEE27 /* SF-Pro-Rounded-Semibold.otf */,
+				2E115C660E43420C90FF2AD9 /* SF-Pro-Text-Bold.otf */,
+				5695CD6AE47E45D497D4AFF6 /* SF-Pro-Text-Medium.otf */,
+				58414AA970D04BF382FB04D9 /* SF-Pro-Text-Regular.otf */,
+				09885E7C07604A60B046323C /* SF-Pro-Text-Semibold.otf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -161,6 +194,14 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				AA43D9E9039181513017B7F8 /* PrivacyInfo.xcprivacy in Resources */,
+				A59DE0E3C1544031A1B22E58 /* SF-Pro-Rounded-Bold.otf in Resources */,
+				CA166A39603A4A6C94341586 /* SF-Pro-Rounded-Medium.otf in Resources */,
+				A55840AA8FB244508B291DAF /* SF-Pro-Rounded-Regular.otf in Resources */,
+				7A8DA0AA05DF41E0B88C709F /* SF-Pro-Rounded-Semibold.otf in Resources */,
+				1543D6B92DC14F03831AE5CE /* SF-Pro-Text-Bold.otf in Resources */,
+				89E22C4FCAE14463AE2AFDB9 /* SF-Pro-Text-Medium.otf in Resources */,
+				5AF84E695F114493BE1F2694 /* SF-Pro-Text-Regular.otf in Resources */,
+				85CF864020954D66BFF14617 /* SF-Pro-Text-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +300,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "boosevacation/boosevacation-Bridging-Header.h";
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = boosevacation/Info.plist;
@@ -289,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "boosevacation/boosevacation-Bridging-Header.h";
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = boosevacation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;

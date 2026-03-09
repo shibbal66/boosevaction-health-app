@@ -1,5 +1,7 @@
 package com.boosevacation
 
+import com.facebook.react.views.text.ReactFontManager
+
 import android.app.Application
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
@@ -22,6 +24,8 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
+    ReactFontManager.getInstance().addCustomFont(this, "SF Pro Text", R.font.sf_pro_text)
+    ReactFontManager.getInstance().addCustomFont(this, "SF Pro Rounded", R.font.sf_pro_rounded)
     loadReactNative(this)
   }
 }
