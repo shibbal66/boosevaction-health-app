@@ -5,7 +5,9 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
+import RootNavigator from './src/navigation/RootNavigator';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -17,12 +19,14 @@ function App() {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NavigationContainer>
-        <BottomTabNavigator />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 
