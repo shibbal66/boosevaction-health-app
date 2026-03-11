@@ -45,7 +45,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       >
         Welcome{'\n'}Back, Captain
       </Text>
-      <Text style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}>Your Voyage Continue Here</Text>
+      <Text
+        style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}
+      >
+        Your Voyage Continue Here
+      </Text>
 
       <LabeledInput
         label="Email"
@@ -91,10 +95,18 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       />
 
       <CommonButton onPress={handleLogin} label="Set Sail" variant="accent" />
-      <Text style={tw`text-center font-dmRegular text-muted text-sm`}>New to voyage? <Pressable onPress={() => navigation.navigate('SignUp')}><Text style={tw`text-tealLight font-dmRegular text-sm -mb-1 border-b border-tealLight`}>Create an account</Text></Pressable></Text>
+      <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
+        New to voyage?{' '}
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
+          <Text
+            style={tw`text-tealLight font-dmRegular text-sm -mb-1 border-b border-tealLight`}
+          >
+            Create an account
+          </Text>
+        </Pressable>
+      </Text>
     </View>
   );
 };
 
 export default LoginScreen;
-

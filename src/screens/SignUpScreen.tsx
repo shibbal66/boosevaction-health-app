@@ -51,7 +51,9 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       >
         Chart Your{'\n'}Course, Captain
       </Text>
-      <Text style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}>
+      <Text
+        style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}
+      >
         Create your captain's account
       </Text>
       <View style={tw`mt-4`}>
@@ -134,4 +136,3 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 };
 
 export default SignUpScreen;
-

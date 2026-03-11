@@ -1,10 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialIcons from '@react-native-vector-icons/material-design-icons';
-import HomeScreen from '../screens/HomeScreen';
-import LogScreen from '../screens/LogScreen';
-import HistoryScreen from '../screens/HistoryScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import {
+  HomeScreen,
+  LogScreen,
+  HistoryScreen,
+  SettingsScreen,
+} from '../screens';
 import type { RootTabParamList } from './types';
 import tw from '../../lib/tailwind';
 
@@ -56,4 +58,3 @@ const BottomTabNavigator: React.FC = () => {
 };
 
 export default BottomTabNavigator;
-

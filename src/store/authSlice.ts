@@ -33,4 +33,3 @@ export const selectIsAuthenticated = (state: { auth: AuthState }) =>
   Boolean(state.auth.token);
 
 export default authSlice.reducer;
-

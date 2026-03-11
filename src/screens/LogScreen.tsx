@@ -11,4 +11,3 @@ export const LogScreen: React.FC = () => {
 };
 
 export default LogScreen;
-

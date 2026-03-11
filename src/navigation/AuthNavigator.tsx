@@ -15,7 +15,7 @@ const AuthNavigator: React.FC = () => {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="SignUp"
@@ -27,4 +27,3 @@ const AuthNavigator: React.FC = () => {
 };
 
 export default AuthNavigator;
-

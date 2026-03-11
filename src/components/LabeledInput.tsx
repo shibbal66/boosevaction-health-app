@@ -20,8 +20,12 @@ const LabeledInput: React.FC<Props> = ({
   ...textInputProps
 }) => {
   return (
-    <View style={tw`${containerClassName ?? ''} ${errorMessage ? 'mb-2' : 'mb-4'}`}>
-      <Text style={tw`mb-2 text-sm text-muted font-dmSemiBold uppercase`}>{label}</Text>
+    <View
+      style={tw`${containerClassName ?? ''} ${errorMessage ? 'mb-2' : 'mb-4'}`}
+    >
+      <Text style={tw`mb-2 text-sm text-muted font-dmSemiBold uppercase`}>
+        {label}
+      </Text>
       <View
         style={[
           tw`flex-row items-center rounded-lg bg-tealDim border`,
@@ -44,4 +48,3 @@ const LabeledInput: React.FC<Props> = ({
 };
 
 export default LabeledInput;
-

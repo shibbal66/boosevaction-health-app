@@ -1,11 +1,8 @@
-export const emailRegex =
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const passwordRegex =
-  /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
+export const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
-export const fullNameRegex =
-  /^[A-Za-z][A-Za-z\s]{1,39}$/;
+export const fullNameRegex = /^[A-Za-z][A-Za-z\s]{1,39}$/;
 
 export const validateEmail = (value: string): string | null => {
   const trimmed = value.trim();
@@ -46,5 +43,3 @@ export const validateFullName = (value: string): string | null => {
 
   return null;
 };
-
-

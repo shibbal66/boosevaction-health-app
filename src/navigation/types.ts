@@ -4,4 +4,3 @@ export type RootTabParamList = {
   History: undefined;
   Settings: undefined;
 };
-

@@ -1,5 +1,10 @@
 import React from 'react';
-import { Pressable, Text, type PressableProps, type ViewStyle } from 'react-native';
+import {
+  Pressable,
+  Text,
+  type PressableProps,
+  type ViewStyle,
+} from 'react-native';
 import tw from '../../lib/tailwind';
 
 type ButtonVariant = 'primary' | 'outlined' | 'accent';
@@ -67,4 +72,3 @@ const CommonButton: React.FC<Props> = ({
 };
 
 export default CommonButton;
-

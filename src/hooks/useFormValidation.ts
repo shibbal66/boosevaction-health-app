@@ -17,7 +17,10 @@ export const useFormValidation = <Values extends Record<string, any>>(
   const [values, setValues] = useState<Values>(initialValues);
   const [errors, setErrors] = useState<ErrorMap<Values>>({});
 
-  const setFieldValue = <K extends keyof Values>(field: K, value: Values[K]) => {
+  const setFieldValue = <K extends keyof Values>(
+    field: K,
+    value: Values[K],
+  ) => {
     setValues(prev => ({
       ...prev,
       [field]: value,
@@ -69,4 +72,3 @@ export const useFormValidation = <Values extends Record<string, any>>(
 };
 
 export default useFormValidation;
-
