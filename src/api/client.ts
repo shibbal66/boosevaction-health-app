@@ -12,7 +12,7 @@ import { clearAuthState } from '../services/authStorage';
 export const createApiClient = (): AxiosInstance => {
   const instance = axios.create({
     baseURL: API_BASE_URL,
-    timeout: 20000,
+    timeout: 50000,
   });
 
   instance.interceptors.request.use(

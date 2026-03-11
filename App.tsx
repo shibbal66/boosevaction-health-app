@@ -9,6 +9,7 @@ import RootNavigator from './src/navigation/RootNavigator';
 import { initializeNetworkListener } from './src/services/network';
 import { loadAuthState } from './src/services/authStorage';
 import { setCredentials } from './src/store/authSlice';
+import ToastHost from './src/components/ToastHost';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -63,6 +64,7 @@ function App() {
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
+        <ToastHost />
       </SafeAreaProvider>
     </Provider>
   );

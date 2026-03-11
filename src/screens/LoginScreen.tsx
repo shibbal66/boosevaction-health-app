@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, Alert } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import tw from '../../lib/tailwind';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
@@ -12,6 +12,7 @@ import useFormValidation from '../hooks/useFormValidation';
 import { validateEmail, validatePassword } from '../../lib/validation';
 import { loginRequest } from '../api/auth';
 import { saveAuthState } from '../services/authStorage';
+import { showToast } from '../store/toastSlice';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -55,8 +56,17 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         user: data.user,
       });
     } catch (error: any) {
-      const message = error?.message || 'Unable to log in. Please try again.';
-      Alert.alert('Login Failed', message);
+      const message =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Unable to log in. Please try again.';
+
+      dispatch(
+        showToast({
+          type: 'info',
+          message,
+        }),
+      );
     } finally {
       setSubmitting(false);
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, Alert } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import tw from '../../lib/tailwind';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
@@ -14,6 +14,7 @@ import {
   validateFullName,
 } from '../../lib/validation';
 import { signupRequest } from '../api/auth';
+import { showToast } from '../store/toastSlice';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignUp'>;
 
@@ -49,16 +50,26 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         values.password,
       );
 
-      Alert.alert('Account Created', result.message, [
-        {
-          text: 'OK',
-          onPress: () => navigation.navigate('Login'),
-        },
-      ]);
+      dispatch(
+        showToast({
+          type: 'success',
+          message: result.message,
+        }),
+      );
+
+      navigation.navigate('Login');
     } catch (error: any) {
       const message =
-        error?.message || 'Unable to create account. Please try again.';
-      Alert.alert('Sign Up Failed', message);
+        error?.response?.data?.message ||
+        error?.message ||
+        'Unable to create account. Please try again.';
+
+      dispatch(
+        showToast({
+          type: 'error',
+          message,
+        }),
+      );
     } finally {
       setSubmitting(false);
     }
