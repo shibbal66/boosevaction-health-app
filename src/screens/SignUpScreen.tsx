@@ -119,7 +119,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       <CommonButton
         onPress={handleSignUp}
         label="Create Account"
-        variant="accent"
+        variant="filled"
       />
       <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
         Already have an account?{' '}

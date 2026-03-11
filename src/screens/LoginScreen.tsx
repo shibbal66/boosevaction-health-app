@@ -94,7 +94,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         }
       />
 
-      <CommonButton onPress={handleLogin} label="Set Sail" variant="accent" />
+      <CommonButton onPress={handleLogin} label="Set Sail" variant="filled" />
       <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
         New to voyage?{' '}
         <Pressable onPress={() => navigation.navigate('SignUp')}>
