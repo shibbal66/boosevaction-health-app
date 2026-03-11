@@ -6,8 +6,10 @@ import LogScreen from '../screens/LogScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import type { RootTabParamList } from './types';
+import tw from '../../lib/tailwind';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
+type MaterialIconName = React.ComponentProps<typeof MaterialIcons>['name'];
 
 const BottomTabNavigator: React.FC = () => {
   return (
@@ -15,10 +17,14 @@ const BottomTabNavigator: React.FC = () => {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarActiveTintColor: '#2563EB',
-        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarActiveTintColor: tw.color('orange'),
+        tabBarInactiveTintColor: tw.color('muted'),
+        tabBarStyle: {
+          backgroundColor: tw.color('navyDark'),
+          borderTopColor: 'transparent',
+        },
         tabBarIcon: ({ color, size }) => {
-          let iconName: string;
+          let iconName: MaterialIconName;
 
           switch (route.name) {
             case 'Home':

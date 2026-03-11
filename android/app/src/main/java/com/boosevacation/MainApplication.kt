@@ -24,8 +24,9 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
-    ReactFontManager.getInstance().addCustomFont(this, "SF Pro Text", R.font.sf_pro_text)
-    ReactFontManager.getInstance().addCustomFont(this, "SF Pro Rounded", R.font.sf_pro_rounded)
+    ReactFontManager.getInstance().addCustomFont(this, "DM Sans", R.font.dm_sans)
+    ReactFontManager.getInstance().addCustomFont(this, "Crimson Pro", R.font.crimson_pro)
+    ReactFontManager.getInstance().addCustomFont(this, "Playfair Display", R.font.playfair_display)
     loadReactNative(this)
   }
 }

@@ -58,15 +58,22 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SF-Pro-Rounded-Bold.otf</string>
-		<string>SF-Pro-Rounded-Medium.otf</string>
-		<string>SF-Pro-Rounded-Regular.otf</string>
-		<string>SF-Pro-Rounded-Semibold.otf</string>
-		<string>SF-Pro-Text-Bold.otf</string>
-		<string>SF-Pro-Text-Medium.otf</string>
-		<string>SF-Pro-Text-Regular.otf</string>
-		<string>SF-Pro-Text-Semibold.otf</string>
 		<string>MaterialDesignIcons.ttf</string>
+		<string>Playfair Display Bold.ttf</string>
+		<string>Playfair Display Medium.ttf</string>
+		<string>PlayfairDisplay Regular.ttf</string>
+		<string>PlayfairDisplay SemiBold.ttf</string>
+		<string>PlayfairDisplay Black.ttf</string>
+		<string>PlayfairDisplay ExtraBold.ttf</string>
+		<string>Crimson Pro Bold.ttf</string>
+		<string>Crimson Pro ExtraBold.ttf</string>
+		<string>Crimson Pro Medium.ttf</string>
+		<string>Crimson Pro Regular.ttf</string>
+		<string>Crimson Pro SemiBold.ttf</string>
+		<string>DM Sans Bold.ttf</string>
+		<string>DM Sans Medium.ttf</string>
+		<string>DM Sans Regular.ttf</string>
+		<string>DM Sans SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

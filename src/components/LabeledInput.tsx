@@ -6,6 +6,8 @@ type Props = TextInputProps & {
   label: string;
   containerClassName?: string;
   errorMessage?: string | null;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 };
 
 const LabeledInput: React.FC<Props> = ({
@@ -13,21 +15,29 @@ const LabeledInput: React.FC<Props> = ({
   containerClassName,
   style,
   errorMessage,
+  leftIcon,
+  rightIcon,
   ...textInputProps
 }) => {
   return (
-    <View style={tw`${containerClassName ?? ''} mb-4`}>
-      <Text style={tw`mb-2 text-base`}>{label}</Text>
-      <TextInput
-        {...textInputProps}
+    <View style={tw`${containerClassName ?? ''} ${errorMessage ? 'mb-2' : 'mb-4'}`}>
+      <Text style={tw`mb-2 text-sm text-muted font-dmSemiBold uppercase`}>{label}</Text>
+      <View
         style={[
-          tw`border rounded-lg px-3 py-2`,
-          errorMessage ? tw`border-red-500` : tw`border-gray-300`,
-          style,
+          tw`flex-row items-center rounded-lg bg-tealDim border`,
+          errorMessage ? tw`border-red` : tw`border-cardBorder`,
         ]}
-      />
+      >
+        {leftIcon ? <View style={tw`pl-3 pr-2`}>{leftIcon}</View> : null}
+        <TextInput
+          {...textInputProps}
+          style={[tw`flex-1 px-3 py-4 text-offWhite`, style]}
+          placeholderTextColor={tw.color('muted2')}
+        />
+        {rightIcon ? <View style={tw`pr-3 pl-2`}>{rightIcon}</View> : null}
+      </View>
       {errorMessage ? (
-        <Text style={tw`mt-1 text-xs text-red-500`}>{errorMessage}</Text>
+        <Text style={tw`mt-1 text-xs text-red`}>{errorMessage}</Text>
       ) : null}
     </View>
   );
