@@ -19,7 +19,7 @@ const VARIANT_STYLES: Record<
   },
   error: {
     title: 'Error',
-    container: 'bg-red-600',
+    container: 'bg-red',
   },
   info: {
     title: "Captain's Log",
@@ -56,7 +56,9 @@ const toastConfig = {
   success: (props: { text1?: string }) => (
     <BaseToast {...props} variant="success" />
   ),
-  error: (props: { text1?: string }) => <BaseToast {...props} variant="error" />,
+  error: (props: { text1?: string }) => (
+    <BaseToast {...props} variant="error" />
+  ),
   info: (props: { text1?: string }) => <BaseToast {...props} variant="info" />,
 };
 

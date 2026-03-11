@@ -60,9 +60,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       navigation.navigate('Login');
     } catch (error: any) {
       const message =
-        error?.response?.data?.message ||
-        error?.message ||
-        'Unable to create account. Please try again.';
+        error?.message || 'Unable to create account. Please try again.';
 
       dispatch(
         showToast({

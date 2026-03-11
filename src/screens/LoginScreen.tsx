@@ -56,14 +56,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         user: data.user,
       });
     } catch (error: any) {
-      const message =
-        error?.response?.data?.message ||
-        error?.message ||
-        'Unable to log in. Please try again.';
+      const message = error?.message || 'Unable to log in. Please try again.';
 
       dispatch(
         showToast({
-          type: 'info',
+          type: 'error',
           message,
         }),
       );
