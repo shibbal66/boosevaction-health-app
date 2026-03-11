@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Pressable,
   Text,
+  ActivityIndicator,
   type PressableProps,
   type ViewStyle,
 } from 'react-native';
@@ -13,6 +14,7 @@ type Props = PressableProps & {
   label: string;
   variant?: ButtonVariant;
   color?: string;
+  loading?: boolean;
 };
 
 const CommonButton: React.FC<Props> = ({
@@ -20,6 +22,7 @@ const CommonButton: React.FC<Props> = ({
   style,
   variant = 'filled',
   color = 'orange',
+  loading = false,
   ...pressableProps
 }) => {
   let buttonClasses: string;
@@ -55,9 +58,17 @@ const CommonButton: React.FC<Props> = ({
   return (
     <Pressable
       {...pressableProps}
+      disabled={loading || pressableProps.disabled}
       style={[tw`${buttonClasses}`, shadowStyle, style] as any}
     >
-      <Text style={tw`${textClasses}`}>{label}</Text>
+      {loading ? (
+        <ActivityIndicator
+          size="small"
+          color={variant === 'filled' ? '#FFFFFF' : (tw.color(color) as string)}
+        />
+      ) : (
+        <Text style={tw`${textClasses}`}>{label}</Text>
+      )}
     </Pressable>
   );
 };

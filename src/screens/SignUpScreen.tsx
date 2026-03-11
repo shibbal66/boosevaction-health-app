@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, Alert } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import tw from '../../lib/tailwind';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { useAppDispatch } from '../store';
-import { setToken } from '../store/authSlice';
 import type { AuthStackParamList } from '../navigation/AuthNavigator';
 import LabeledInput from '../components/LabeledInput';
 import CommonButton from '../components/CommonButton';
@@ -14,6 +13,7 @@ import {
   validatePassword,
   validateFullName,
 } from '../../lib/validation';
+import { signupRequest } from '../api/auth';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignUp'>;
 
@@ -33,15 +33,35 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
   );
 
   const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     const { isValid } = validateAll();
     if (!isValid) {
       return;
     }
 
-    // In a real app, call API and handle server-side errors.
-    dispatch(setToken({ token: 'dummy-signup-token' }));
+    try {
+      setSubmitting(true);
+      const result = await signupRequest(
+        values.fullName,
+        values.email,
+        values.password,
+      );
+
+      Alert.alert('Account Created', result.message, [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Login'),
+        },
+      ]);
+    } catch (error: any) {
+      const message =
+        error?.message || 'Unable to create account. Please try again.';
+      Alert.alert('Sign Up Failed', message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -120,6 +140,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         onPress={handleSignUp}
         label="Create Account"
         variant="filled"
+        loading={submitting}
       />
       <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
         Already have an account?{' '}

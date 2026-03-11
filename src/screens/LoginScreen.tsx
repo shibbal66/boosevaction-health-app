@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, Alert } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import tw from '../../lib/tailwind';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import { useAppDispatch } from '../store';
-import { setToken } from '../store/authSlice';
+import { setCredentials } from '../store/authSlice';
 import type { AuthStackParamList } from '../navigation/AuthNavigator';
 import LabeledInput from '../components/LabeledInput';
 import CommonButton from '../components/CommonButton';
 import useFormValidation from '../hooks/useFormValidation';
 import { validateEmail, validatePassword } from '../../lib/validation';
+import { loginRequest } from '../api/auth';
+import { saveAuthState } from '../services/authStorage';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -27,15 +29,37 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   );
 
   const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const { isValid } = validateAll();
     if (!isValid) {
       return;
     }
 
-    // In a real app, call API and handle server-side errors.
-    dispatch(setToken({ token: 'dummy-login-token' }));
+    try {
+      setSubmitting(true);
+      const data = await loginRequest(values.email, values.password);
+
+      const action = setCredentials({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        user: data.user,
+      });
+
+      dispatch(action);
+
+      await saveAuthState({
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        user: data.user,
+      });
+    } catch (error: any) {
+      const message = error?.message || 'Unable to log in. Please try again.';
+      Alert.alert('Login Failed', message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -94,7 +118,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         }
       />
 
-      <CommonButton onPress={handleLogin} label="Set Sail" variant="filled" />
+      <CommonButton
+        onPress={handleLogin}
+        label="Set Sail"
+        variant="filled"
+        loading={submitting}
+      />
       <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
         New to voyage?{' '}
         <Pressable onPress={() => navigation.navigate('SignUp')}>

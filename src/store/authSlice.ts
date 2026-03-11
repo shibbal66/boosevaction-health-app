@@ -1,35 +1,53 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type AuthUser = {
+  id: string;
+  name: string;
+  email: string;
+  notificationEnabled: boolean;
+  notificationTime: string | null;
+  timezone: string | null;
+  fcmToken: string | null;
+};
+
 export type AuthState = {
-  token: string | null;
-  isLoading: boolean;
+  accessToken: string | null;
+  refreshToken: string | null;
+  user: AuthUser | null;
 };
 
 const initialState: AuthState = {
-  token: null,
-  isLoading: false,
+  accessToken: null,
+  refreshToken: null,
+  user: null,
 };
 
-type SetTokenPayload = {
-  token: string | null;
+type SetCredentialsPayload = {
+  accessToken: string;
+  refreshToken: string;
+  user: AuthUser;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setToken(state, action: PayloadAction<SetTokenPayload>) {
-      state.token = action.payload.token;
+    setCredentials(state, action: PayloadAction<SetCredentialsPayload>) {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.user = action.payload.user;
     },
     logout(state) {
-      state.token = null;
+      state.accessToken = null;
+      state.refreshToken = null;
+      state.user = null;
     },
   },
 });
 
-export const { setToken, logout } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions;
 
 export const selectIsAuthenticated = (state: { auth: AuthState }) =>
-  Boolean(state.auth.token);
+  Boolean(state.auth.accessToken);
 
 export default authSlice.reducer;
