@@ -12,6 +12,7 @@ module.exports = {
         navyMid: '#1a3550',
         navyLight: '#254e72',
         orange: '#E8742A',
+        orangeDim: 'rgba(232,116,42,0.1)',
         orangeDark: '#c45e1a',
         orangeLight: '#f08c47',
         teal: '#2E7A8C',

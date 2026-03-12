@@ -30,31 +30,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0353201014CA4DFDACED6D5F /* PlayfairDisplay ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay ExtraBold.ttf"; path = "../assets/fonts/PlayfairDisplay ExtraBold.ttf"; sourceTree = "<group>"; };
+		0353201014CA4DFDACED6D5F /* PlayfairDisplay ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay ExtraBold.ttf"; path = "../assets/fonts/PlayfairDisplay ExtraBold.ttf"; sourceTree = "<group>"; };
 		04E84C19F814FF659D22AC2E /* Pods-boosevacation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boosevacation.release.xcconfig"; path = "Target Support Files/Pods-boosevacation/Pods-boosevacation.release.xcconfig"; sourceTree = "<group>"; };
-		0FD13575857C44489169FD0B /* Crimson Pro Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Medium.ttf"; path = "../assets/fonts/Crimson Pro Medium.ttf"; sourceTree = "<group>"; };
-		0FFD55EF6F9F42F19C251106 /* DM Sans SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans SemiBold.ttf"; path = "../assets/fonts/DM Sans SemiBold.ttf"; sourceTree = "<group>"; };
+		0FD13575857C44489169FD0B /* Crimson Pro Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Medium.ttf"; path = "../assets/fonts/Crimson Pro Medium.ttf"; sourceTree = "<group>"; };
+		0FFD55EF6F9F42F19C251106 /* DM Sans SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans SemiBold.ttf"; path = "../assets/fonts/DM Sans SemiBold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* boosevacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boosevacation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = boosevacation/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = boosevacation/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = boosevacation/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		276BD108E3EA492FA827F7C0 /* DM Sans Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Bold.ttf"; path = "../assets/fonts/DM Sans Bold.ttf"; sourceTree = "<group>"; };
-		487616707B7C471886CF540B /* PlayfairDisplay SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay SemiBold.ttf"; path = "../assets/fonts/PlayfairDisplay SemiBold.ttf"; sourceTree = "<group>"; };
-		5AD347D9F44445F9A6F28156 /* Playfair Display Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Playfair Display Bold.ttf"; path = "../assets/fonts/Playfair Display Bold.ttf"; sourceTree = "<group>"; };
-		63AFFB63736249D289BAA658 /* DM Sans Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Regular.ttf"; path = "../assets/fonts/DM Sans Regular.ttf"; sourceTree = "<group>"; };
-		72BBEAB9821A413BAB198394 /* PlayfairDisplay Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay Black.ttf"; path = "../assets/fonts/PlayfairDisplay Black.ttf"; sourceTree = "<group>"; };
+		276BD108E3EA492FA827F7C0 /* DM Sans Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Bold.ttf"; path = "../assets/fonts/DM Sans Bold.ttf"; sourceTree = "<group>"; };
+		487616707B7C471886CF540B /* PlayfairDisplay SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay SemiBold.ttf"; path = "../assets/fonts/PlayfairDisplay SemiBold.ttf"; sourceTree = "<group>"; };
+		5AD347D9F44445F9A6F28156 /* Playfair Display Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Playfair Display Bold.ttf"; path = "../assets/fonts/Playfair Display Bold.ttf"; sourceTree = "<group>"; };
+		63AFFB63736249D289BAA658 /* DM Sans Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Regular.ttf"; path = "../assets/fonts/DM Sans Regular.ttf"; sourceTree = "<group>"; };
+		72BBEAB9821A413BAB198394 /* PlayfairDisplay Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay Black.ttf"; path = "../assets/fonts/PlayfairDisplay Black.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = boosevacation/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = boosevacation/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8EE242D851374834AD1A4BBA /* DM Sans Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Medium.ttf"; path = "../assets/fonts/DM Sans Medium.ttf"; sourceTree = "<group>"; };
+		8EE242D851374834AD1A4BBA /* DM Sans Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DM Sans Medium.ttf"; path = "../assets/fonts/DM Sans Medium.ttf"; sourceTree = "<group>"; };
 		9A01A38D2D8F91E3674BCEA4 /* Pods-boosevacation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boosevacation.debug.xcconfig"; path = "Target Support Files/Pods-boosevacation/Pods-boosevacation.debug.xcconfig"; sourceTree = "<group>"; };
-		A02BA11B2C5F4BAAACA462D3 /* PlayfairDisplay Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay Regular.ttf"; path = "../assets/fonts/PlayfairDisplay Regular.ttf"; sourceTree = "<group>"; };
-		A6F431F1B1724D828B9E5200 /* Crimson Pro SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro SemiBold.ttf"; path = "../assets/fonts/Crimson Pro SemiBold.ttf"; sourceTree = "<group>"; };
-		B2B29F81F5AD42B4A080B194 /* Crimson Pro Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Regular.ttf"; path = "../assets/fonts/Crimson Pro Regular.ttf"; sourceTree = "<group>"; };
+		A02BA11B2C5F4BAAACA462D3 /* PlayfairDisplay Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "PlayfairDisplay Regular.ttf"; path = "../assets/fonts/PlayfairDisplay Regular.ttf"; sourceTree = "<group>"; };
+		A6F431F1B1724D828B9E5200 /* Crimson Pro SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro SemiBold.ttf"; path = "../assets/fonts/Crimson Pro SemiBold.ttf"; sourceTree = "<group>"; };
+		B2B29F81F5AD42B4A080B194 /* Crimson Pro Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Regular.ttf"; path = "../assets/fonts/Crimson Pro Regular.ttf"; sourceTree = "<group>"; };
 		B3BB779C8545D2A33B25ADDD /* libPods-boosevacation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-boosevacation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA9E7957AAA64625B0A48C40 /* Playfair Display Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Playfair Display Medium.ttf"; path = "../assets/fonts/Playfair Display Medium.ttf"; sourceTree = "<group>"; };
-		C87AA091007C40AE9FF43CEC /* Crimson Pro Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Bold.ttf"; path = "../assets/fonts/Crimson Pro Bold.ttf"; sourceTree = "<group>"; };
+		BA9E7957AAA64625B0A48C40 /* Playfair Display Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Playfair Display Medium.ttf"; path = "../assets/fonts/Playfair Display Medium.ttf"; sourceTree = "<group>"; };
+		C87AA091007C40AE9FF43CEC /* Crimson Pro Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro Bold.ttf"; path = "../assets/fonts/Crimson Pro Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FF04E8E3DDED4062AAED95F9 /* Crimson Pro ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro ExtraBold.ttf"; path = "../assets/fonts/Crimson Pro ExtraBold.ttf"; sourceTree = "<group>"; };
+		FF04E8E3DDED4062AAED95F9 /* Crimson Pro ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Crimson Pro ExtraBold.ttf"; path = "../assets/fonts/Crimson Pro ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,6 @@
 				0FFD55EF6F9F42F19C251106 /* DM Sans SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -329,6 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YRDG5J5N4Y;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = boosevacation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -360,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YRDG5J5N4Y;
 				INFOPLIST_FILE = boosevacation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

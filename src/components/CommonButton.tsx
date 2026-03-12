@@ -23,8 +23,11 @@ const CommonButton: React.FC<Props> = ({
   variant = 'filled',
   color = 'orange',
   loading = false,
+  disabled,
   ...pressableProps
 }) => {
+  const isDisabled = loading || disabled;
+
   let buttonClasses: string;
   let textClasses: string;
   let shadowStyle: ViewStyle | undefined;
@@ -33,33 +36,41 @@ const CommonButton: React.FC<Props> = ({
     case 'outlined':
       buttonClasses = `border border-${color} rounded-full py-3 mb-4`;
       textClasses = `text-center text-${color} text-base font-dmBold uppercase`;
-      shadowStyle = {
-        shadowColor: tw.color(color),
-        shadowOffset: { width: 5, height: 5 },
-        shadowOpacity: 0.4,
-        shadowRadius: 5,
-        elevation: 4,
-      };
+      shadowStyle = isDisabled
+        ? undefined
+        : {
+            shadowColor: tw.color(color),
+            shadowOffset: { width: 5, height: 5 },
+            shadowOpacity: 0.4,
+            shadowRadius: 5,
+            elevation: 4,
+          };
       break;
     case 'filled':
     default:
       buttonClasses = `bg-${color} rounded-full py-3 mb-4`;
       textClasses = 'text-center text-white text-base font-dmBold uppercase';
-      shadowStyle = {
-        shadowColor: tw.color(color),
-        shadowOffset: { width: 5, height: 5 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        elevation: 4,
-      };
+      shadowStyle = isDisabled
+        ? undefined
+        : {
+            shadowColor: tw.color(color),
+            shadowOffset: { width: 5, height: 5 },
+            shadowOpacity: 0.3,
+            shadowRadius: 5,
+            elevation: 4,
+          };
       break;
   }
+
+  const disabledStyle: ViewStyle = isDisabled
+    ? { opacity: 0.5, elevation: 0 }
+    : {};
 
   return (
     <Pressable
       {...pressableProps}
-      disabled={loading || pressableProps.disabled}
-      style={[tw`${buttonClasses}`, shadowStyle, style] as any}
+      disabled={isDisabled}
+      style={[tw`${buttonClasses}`, shadowStyle, disabledStyle, style] as any}
     >
       {loading ? (
         <ActivityIndicator

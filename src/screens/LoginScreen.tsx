@@ -13,6 +13,7 @@ import { validateEmail, validatePassword } from '../../lib/validation';
 import { loginRequest } from '../api/auth';
 import { saveAuthState } from '../services/authStorage';
 import { showToast } from '../store/toastSlice';
+import SpinningShipWheel from '../components/SpinningShipWheel';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -71,6 +72,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={tw`flex-1 justify-center px-6 bg-navyDark`}>
+      <SpinningShipWheel style="absolute top-[30%] right-[0%]" />
       <Text
         style={tw`text-heading font-playfairDisplayBlack text-offWhite mb-1 text-center leading-tight`}
       >
