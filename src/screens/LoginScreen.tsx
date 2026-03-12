@@ -14,11 +14,13 @@ import { loginRequest } from '../api/auth';
 import { saveAuthState } from '../services/authStorage';
 import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
+import useUserProfile from '../hooks/useUserProfile';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const dispatch = useAppDispatch();
+  const { patchUser } = useUserProfile({ showToasts: false });
   const { values, errors, setFieldValue, validateAll } = useFormValidation(
     {
       email: '',
@@ -56,6 +58,15 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         refreshToken: data.refreshToken,
         user: data.user,
       });
+
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? null;
+      if (timezone) {
+        try {
+          await patchUser({ timezone });
+        } catch {
+          // ignore timezone update failures on login
+        }
+      }
     } catch (error: any) {
       const message = error?.message || 'Unable to log in. Please try again.';
 

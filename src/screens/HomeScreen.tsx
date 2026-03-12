@@ -1,21 +1,44 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View, Text } from 'react-native';
 import tw from '../../lib/tailwind';
 import GridBackground from '../components/GridBackground';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
 import CommonButton from '../components/CommonButton';
 import SpinningShipWheel from '../components/SpinningShipWheel';
+import useVoyage from '../hooks/useVoyage';
 
 export const HomeScreen: React.FC = () => {
-  // TODO: Replace this with real data from your log store
-  const todayLog = {
-    isLogged: false,
-    habits: {
-      alcoholFree: false,
-      noLateCaffeine: false,
-      lateMeals: false,
-    },
-  };
+  const { voyage, analytics, getVoyageAll } = useVoyage({ showToasts: false });
+  const [loading, setLoading] = useState(false);
+
+  const today = voyage?.days?.[0];
+
+  const formattedDate = useMemo(
+    () =>
+      new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }),
+    [],
+  );
+
+  const loadVoyage = useCallback(async () => {
+    try {
+      setLoading(true);
+      await getVoyageAll();
+    } finally {
+      setLoading(false);
+    }
+  }, [getVoyageAll]);
+
+  useEffect(() => {
+    loadVoyage();
+  }, [loadVoyage]);
+
+  const handleLogHabitsPress = useCallback(() => {
+    // TODO: Navigate to habits logging screen when available
+  }, []);
 
   return (
     <View style={tw`flex-1 bg-navy`}>
@@ -37,11 +60,7 @@ export const HomeScreen: React.FC = () => {
         <Text
           style={tw`text-offWhite text-base font-crimsonProRegular tracking-widest`}
         >
-          {new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+          {formattedDate}
         </Text>
         <View
           style={tw`border border-cardBorder bg-orangeDim rounded-lg p-4 mt-4`}
@@ -54,10 +73,10 @@ export const HomeScreen: React.FC = () => {
           <Text
             style={tw`text-orange text-8xl font-playfairDisplayBold text-center`}
           >
-            12
+            {analytics?.totalDays ?? 0}
           </Text>
           <Text
-            style={tw`text-offWhite text-xl font-crimsonProRegular text-center uppercase -mt-5`}
+            style={tw`text-offWhite text-xl font-crimsonProRegular text-center uppercase`}
           >
             Days at Sea
           </Text>
@@ -66,7 +85,7 @@ export const HomeScreen: React.FC = () => {
               <Text
                 style={tw`text-offWhite text-4xl font-playfairDisplayBlack`}
               >
-                9
+                {analytics?.checkedIn ?? 0}
               </Text>
               <Text
                 style={tw`text-muted text-xs font-dmMedium tracking-widest text-center uppercase`}
@@ -78,7 +97,7 @@ export const HomeScreen: React.FC = () => {
               <Text
                 style={tw`text-offWhite text-4xl font-playfairDisplayBlack`}
               >
-                87%
+                {analytics?.alcoholFree ?? 0}%
               </Text>
               <Text
                 style={tw`text-muted text-xs font-dmMedium tracking-widest text-center uppercase`}
@@ -90,7 +109,7 @@ export const HomeScreen: React.FC = () => {
               <Text
                 style={tw`text-offWhite text-4xl font-playfairDisplayBlack uppercase`}
               >
-                3.8
+                {analytics?.averageMood ?? 0}
               </Text>
               <Text
                 style={tw`text-muted text-xs font-dmMedium tracking-widest text-center uppercase`}
@@ -119,20 +138,20 @@ export const HomeScreen: React.FC = () => {
                 >
                   <View
                     style={tw`w-2 h-2 rounded-full mr-2 ${
-                      todayLog.isLogged ? 'bg-orange' : 'bg-muted'
+                      today?.completed ? 'bg-orange' : 'bg-muted'
                     }`}
                   />
                   <Text
                     style={tw`text-xs font-dmMedium tracking-widest uppercase ${
-                      todayLog.isLogged ? 'text-orange' : 'text-muted'
+                      today?.completed ? 'text-orange' : 'text-muted'
                     }`}
                   >
-                    {todayLog.isLogged ? 'Logged for Today' : 'Not Logged'}
+                    {today?.completed ? 'Logged for Today' : 'Not Logged'}
                   </Text>
                 </View>
               </View>
               <Text style={tw`text-muted text-xs font-dmMedium mt-1`}>
-                {todayLog.isLogged
+                {today?.completed
                   ? 'Nice work – come back tomorrow to add another entry.'
                   : "You haven't logged today’s habits yet."}
               </Text>
@@ -141,7 +160,7 @@ export const HomeScreen: React.FC = () => {
               <View
                 style={[
                   tw`flex-1 items-center border rounded-lg py-3 px-2`,
-                  todayLog.habits.alcoholFree
+                  today?.alcohol
                     ? tw`border-orange bg-navy/40`
                     : tw`border-cardBorder bg-navy/10 opacity-40`,
                 ]}
@@ -150,14 +169,12 @@ export const HomeScreen: React.FC = () => {
                   name="beer"
                   size={24}
                   color={
-                    todayLog.habits.alcoholFree
-                      ? tw.color('offWhite')
-                      : tw.color('muted')
+                    today?.alcohol ? tw.color('offWhite') : tw.color('muted')
                   }
                 />
                 <Text
                   style={tw`${
-                    todayLog.habits.alcoholFree ? 'text-offWhite' : 'text-muted'
+                    today?.alcohol ? 'text-offWhite' : 'text-muted'
                   } text-xs font-dmMedium tracking-widest text-center uppercase mt-2`}
                 >
                   Alcohol{'\n'}Free
@@ -166,7 +183,7 @@ export const HomeScreen: React.FC = () => {
               <View
                 style={[
                   tw`flex-1 items-center border rounded-lg py-3 px-2`,
-                  todayLog.habits.noLateCaffeine
+                  today?.caffeine
                     ? tw`border-orange bg-navy/40`
                     : tw`border-cardBorder bg-navy/10 opacity-40`,
                 ]}
@@ -175,16 +192,12 @@ export const HomeScreen: React.FC = () => {
                   name="coffee"
                   size={24}
                   color={
-                    todayLog.habits.noLateCaffeine
-                      ? tw.color('offWhite')
-                      : tw.color('muted')
+                    today?.caffeine ? tw.color('offWhite') : tw.color('muted')
                   }
                 />
                 <Text
                   style={tw`${
-                    todayLog.habits.noLateCaffeine
-                      ? 'text-offWhite'
-                      : 'text-muted'
+                    today?.caffeine ? 'text-offWhite' : 'text-muted'
                   } text-xs font-dmMedium tracking-widest text-center uppercase mt-2`}
                 >
                   No Late{'\n'}Caffeine
@@ -193,7 +206,7 @@ export const HomeScreen: React.FC = () => {
               <View
                 style={[
                   tw`flex-1 items-center border rounded-lg py-3 px-2`,
-                  todayLog.habits.lateMeals
+                  today?.food
                     ? tw`border-orange bg-navy/40`
                     : tw`border-cardBorder bg-navy/10 opacity-40`,
                 ]}
@@ -201,15 +214,11 @@ export const HomeScreen: React.FC = () => {
                 <MaterialDesignIcons
                   name="weather-night"
                   size={24}
-                  color={
-                    todayLog.habits.lateMeals
-                      ? tw.color('offWhite')
-                      : tw.color('muted')
-                  }
+                  color={today?.food ? tw.color('offWhite') : tw.color('muted')}
                 />
                 <Text
                   style={tw`${
-                    todayLog.habits.lateMeals ? 'text-offWhite' : 'text-muted'
+                    today?.food ? 'text-offWhite' : 'text-muted'
                   } text-xs font-dmMedium tracking-widest text-center uppercase mt-2`}
                 >
                   Late{'\n'}Meals
@@ -218,15 +227,14 @@ export const HomeScreen: React.FC = () => {
             </View>
             <View style={tw`mt-4`}>
               <CommonButton
-                onPress={() => {}}
+                onPress={handleLogHabitsPress}
                 label={
-                  todayLog.isLogged
+                  today?.completed
                     ? "Today's habits logged"
                     : "Log today's habits"
                 }
-                variant={todayLog.isLogged ? 'outlined' : 'filled'}
-                color={todayLog.isLogged ? 'muted' : 'orange'}
-                disabled={todayLog.isLogged}
+                variant={today?.completed ? 'outlined' : 'filled'}
+                disabled={today?.completed}
               />
             </View>
           </View>

@@ -37,6 +37,9 @@ const authSlice = createSlice({
       state.refreshToken = action.payload.refreshToken;
       state.user = action.payload.user;
     },
+    updateUser(state, action: PayloadAction<AuthUser>) {
+      state.user = action.payload;
+    },
     logout(state) {
       state.accessToken = null;
       state.refreshToken = null;
@@ -45,7 +48,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, updateUser, logout } = authSlice.actions;
 
 export const selectIsAuthenticated = (state: { auth: AuthState }) =>
   Boolean(state.auth.accessToken);
