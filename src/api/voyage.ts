@@ -1,3 +1,8 @@
+import {
+  VOYAGE_ANALYTICS_URL,
+  VOYAGE_URL,
+  VOYAGE_LOG_URL,
+} from '../utils/apiUrls';
 import apiClient from './client';
 
 export type VoyageMood = 'TERRIBLE' | 'BAD' | 'OK' | 'GOOD' | 'GREAT';
@@ -51,7 +56,7 @@ type VoyageAnalyticsResponse = {
 };
 
 export const getVoyageRequest = async (): Promise<Voyage> => {
-  const response = await apiClient.get<VoyageResponse>('/voyage');
+  const response = await apiClient.get<VoyageResponse>(VOYAGE_URL);
   return response.data.data;
 };
 
@@ -59,15 +64,15 @@ export const patchVoyageLogRequest = async (
   payload: PatchVoyageLogPayload,
 ): Promise<VoyageDay> => {
   const response = await apiClient.patch<VoyageLogResponse>(
-    '/voyage/log',
+    VOYAGE_LOG_URL,
     payload,
   );
   return response.data.data;
 };
 
 export const getVoyageAnalyticsRequest = async (): Promise<VoyageAnalytics> => {
-  const response =
-    await apiClient.get<VoyageAnalyticsResponse>('/voyage/analytics');
+  const response = await apiClient.get<VoyageAnalyticsResponse>(
+    VOYAGE_ANALYTICS_URL,
+  );
   return response.data.data;
 };
-

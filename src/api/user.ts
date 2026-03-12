@@ -1,5 +1,6 @@
 import apiClient from './client';
 import type { AuthUser } from '../store/authSlice';
+import { USER_URL } from '../utils/apiUrls';
 
 type UserResponse = {
   success: boolean;
@@ -15,14 +16,13 @@ export type PatchCurrentUserPayload = Partial<{
 }>;
 
 export const getCurrentUserRequest = async (): Promise<AuthUser> => {
-  const response = await apiClient.get<UserResponse>('/user/me');
+  const response = await apiClient.get<UserResponse>(USER_URL);
   return response.data.data;
 };
 
 export const patchCurrentUserRequest = async (
   payload: PatchCurrentUserPayload,
 ): Promise<AuthUser> => {
-  const response = await apiClient.patch<UserResponse>('/user/me', payload);
+  const response = await apiClient.patch<UserResponse>(USER_URL, payload);
   return response.data.data;
 };
-

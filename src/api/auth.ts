@@ -1,4 +1,5 @@
 import apiClient from './client';
+import { LOGIN_URL, SIGNUP_URL } from '../utils/apiUrls';
 
 export type LoginResponse = {
   accessToken: string;
@@ -15,10 +16,10 @@ export type LoginResponse = {
 };
 
 export const loginRequest = async (email: string, password: string) => {
-  const response = await apiClient.post<{ success: boolean; data: LoginResponse }>(
-    '/auth/login',
-    { email, password },
-  );
+  const response = await apiClient.post<{
+    success: boolean;
+    data: LoginResponse;
+  }>(LOGIN_URL, { email, password });
 
   return response.data.data;
 };
@@ -31,7 +32,7 @@ export const signupRequest = async (
   const response = await apiClient.post<{
     success: boolean;
     message: string;
-  }>('/auth/signup', {
+  }>(SIGNUP_URL, {
     name,
     email,
     password,
@@ -39,4 +40,3 @@ export const signupRequest = async (
 
   return response.data;
 };
-

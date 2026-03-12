@@ -9,6 +9,12 @@ import {
 } from '../screens';
 import type { RootTabParamList } from './types';
 import tw from '../../lib/tailwind';
+import {
+  SCREEN_NAME_HOME,
+  SCREEN_NAME_LOG,
+  SCREEN_NAME_HISTORY,
+  SCREEN_NAME_SETTINGS,
+} from '../utils/screenName';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 type MaterialIconName = React.ComponentProps<typeof MaterialIcons>['name'];
@@ -49,10 +55,10 @@ const BottomTabNavigator: React.FC = () => {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Log" component={LogScreen} />
-      <Tab.Screen name="History" component={HistoryScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name={SCREEN_NAME_HOME} component={HomeScreen} />
+      <Tab.Screen name={SCREEN_NAME_LOG} component={LogScreen} />
+      <Tab.Screen name={SCREEN_NAME_HISTORY} component={HistoryScreen} />
+      <Tab.Screen name={SCREEN_NAME_SETTINGS} component={SettingsScreen} />
     </Tab.Navigator>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen, SignUpScreen } from '../screens';
+import { SCREEN_NAME_LOGIN, SCREEN_NAME_SIGNUP } from '../utils/screenName';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -13,12 +14,12 @@ const AuthNavigator: React.FC = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Login"
+        name={SCREEN_NAME_LOGIN}
         component={LoginScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="SignUp"
+        name={SCREEN_NAME_SIGNUP}
         component={SignUpScreen}
         options={{ headerShown: false }}
       />
