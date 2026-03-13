@@ -15,6 +15,8 @@ if linkage != nil
 end
 
 target 'captainslog' do
+  # Required for Firebase Swift pods (e.g. FirebaseCoreInternal) with static linkage
+  pod 'GoogleUtilities', :modular_headers => true
   config = use_native_modules!
 
   use_react_native!(
