@@ -1,6 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 import Svg, { Path } from 'react-native-svg';
-const ShipWheel = ({ color = '#000', width = 24, height = 24 }) => (
+
+export type ShipWheelProps = {
+  color?: string;
+  width?: number;
+  height?: number;
+};
+
+const ShipWheel: React.FC<ShipWheelProps> = ({
+  color = '#000',
+  width = 24,
+  height = 24,
+}) => (
   <Svg
     width={width}
     height={height}
@@ -13,4 +24,5 @@ const ShipWheel = ({ color = '#000', width = 24, height = 24 }) => (
     />
   </Svg>
 );
+
 export default ShipWheel;

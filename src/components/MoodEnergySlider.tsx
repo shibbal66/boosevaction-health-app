@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import tw from '../../lib/tailwind';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
@@ -81,6 +81,11 @@ export default function MoodEnergySlider({
   const [selected, setSelected] = useState(initialValue);
   const scaleAnims = useRef(STEPS.map(() => new Animated.Value(1))).current;
 
+  // Sync internal state when initialValue changes (e.g. after API load in LogScreen).
+  useEffect(() => {
+    setSelected(initialValue);
+  }, [initialValue]);
+
   const handleSelect = (value: number) => {
     if (disabled) return;
     // Animate the tapped node
@@ -113,9 +118,8 @@ export default function MoodEnergySlider({
   return (
     <View
       style={[
-        tw`rounded-lg p-4 border border-cardBorder bg-orangeDim opacity-${
-          disabled ? '60' : '100'
-        }`,
+        tw`rounded-lg p-4 border border-cardBorder bg-orangeDim`,
+        disabled ? tw`opacity-60` : tw`opacity-100`,
         {
           shadowColor: '#000',
           shadowOpacity: 0.3,

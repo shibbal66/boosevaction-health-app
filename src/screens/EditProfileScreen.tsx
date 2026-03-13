@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -22,6 +22,10 @@ export const EditProfileScreen: React.FC = () => {
   const navigation = useNavigation<Nav>();
   const { user, patchUser, updating } = useUserProfile({ showToasts: true });
   const [name, setName] = useState(user?.name ?? '');
+
+  useEffect(() => {
+    setName(user?.name ?? '');
+  }, [user?.name]);
 
   const handleSave = useCallback(async () => {
     const trimmed = name.trim();

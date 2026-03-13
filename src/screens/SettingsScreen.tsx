@@ -54,148 +54,142 @@ export const SettingsScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={tw`flex-1 bg-navy`}>
-      <View style={tw`flex-1 bg-navy`}>
-        <GridBackground />
-        <ScrollView
-          style={tw`flex-1`}
-          contentContainerStyle={tw`px-6 pb-8`}
-          showsVerticalScrollIndicator={false}
+      <GridBackground />
+      <ScrollView
+        style={tw`flex-1`}
+        contentContainerStyle={tw`px-6 pb-8`}
+        showsVerticalScrollIndicator={false}
+      >
+        <Text
+          style={tw`text-offWhite text-heading font-playfairDisplayBold text-center mt-1`}
         >
-          <Text
-            style={tw`text-offWhite text-heading font-playfairDisplayBold text-center mt-1`}
-          >
-            Settings
-          </Text>
-          {/* Profile card */}
-          <View
-            style={tw`rounded-2xl border border-cardBorder bg-orangeDim overflow-hidden my-6`}
-          >
-            <View style={tw`flex-row items-center p-4`}>
-              <View
-                style={tw`w-14 h-14 rounded-2xl bg-navyLight items-center justify-center mr-4`}
+          Settings
+        </Text>
+        {/* Profile card */}
+        <View
+          style={tw`rounded-2xl border border-cardBorder bg-orangeDim overflow-hidden my-6`}
+        >
+          <View style={tw`flex-row items-center p-4`}>
+            <View
+              style={tw`w-14 h-14 rounded-2xl bg-navyLight items-center justify-center mr-4`}
+            >
+              <MaterialDesignIcons
+                name="anchor"
+                size={28}
+                color={tw.color('offWhite')}
+              />
+            </View>
+            <View style={tw`flex-1`}>
+              <Text
+                style={tw`text-offWhite text-lg font-dmSemiBold`}
+                numberOfLines={1}
               >
-                <MaterialDesignIcons
-                  name="anchor"
-                  size={28}
-                  color={tw.color('offWhite')}
-                />
-              </View>
-              <View style={tw`flex-1`}>
+                {user?.name ?? 'Captain'}
+              </Text>
+              {voyageStartText ? (
                 <Text
-                  style={tw`text-offWhite text-lg font-dmSemiBold`}
+                  style={tw`text-muted text-sm font-dmRegular mt-0.5`}
                   numberOfLines={1}
                 >
-                  {user?.name ?? 'Captain'}
+                  {voyageStartText}
                 </Text>
-                {voyageStartText ? (
-                  <Text
-                    style={tw`text-muted text-sm font-dmRegular mt-0.5`}
-                    numberOfLines={1}
-                  >
-                    {voyageStartText}
-                  </Text>
-                ) : null}
-              </View>
+              ) : null}
             </View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('EditProfile')}
-              style={tw`border-t border-cardBorder py-3 px-4`}
-              activeOpacity={0.8}
-            >
-              <Text style={tw`text-orange text-sm font-dmSemiBold text-center`}>
-                Edit profile
-              </Text>
-            </TouchableOpacity>
           </View>
-
-          {/* NOTIFICATIONS */}
-          <Text
-            style={tw`text-muted text-xs font-dmSemiBold tracking-widest uppercase mb-3`}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('EditProfile')}
+            style={tw`border-t border-cardBorder py-3 px-4`}
+            activeOpacity={0.8}
           >
-            NOTIFICATIONS
-          </Text>
+            <Text style={tw`text-orange text-sm font-dmSemiBold text-center`}>
+              Edit profile
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* NOTIFICATIONS */}
+        <Text
+          style={tw`text-muted text-xs font-dmSemiBold tracking-widest uppercase mb-3`}
+        >
+          NOTIFICATIONS
+        </Text>
+        <View
+          style={tw`rounded-2xl border border-cardBorder bg-orangeDim overflow-hidden mb-8`}
+        >
+          {/* Evening Reminder row with toggle */}
           <View
-            style={tw`rounded-2xl border border-cardBorder bg-orangeDim overflow-hidden mb-8`}
+            style={tw`flex-row items-center px-4 py-4 border-b border-cardBorder`}
           >
-            {/* Evening Reminder row with toggle */}
             <View
-              style={tw`flex-row items-center px-4 py-4 border-b border-cardBorder`}
+              style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
             >
-              <View
-                style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
-              >
-                <MaterialDesignIcons
-                  name="bell"
-                  size={24}
-                  color={tw.color('orange')}
-                />
-              </View>
-              <View style={tw`flex-1`}>
-                <Text style={tw`text-offWhite text-base font-dmSemiBold`}>
-                  Evening Reminder
-                </Text>
-                <Text style={tw`text-muted text-xs font-dmRegular mt-0.5`}>
-                  Daily push notification.
-                </Text>
-              </View>
-              <Switch
-                value={user?.notificationEnabled ?? false}
-                onValueChange={handleToggleReminder}
-                disabled={updating}
-                trackColor={{
-                  false: tw.color('navyDark'),
-                  true: tw.color('orange'),
-                }}
-                thumbColor={tw.color('offWhite')}
+              <MaterialDesignIcons
+                name="bell"
+                size={24}
+                color={tw.color('orange')}
               />
             </View>
-
-            {/* Reminder Time row - tap to open picker */}
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ReminderTime')}
-              style={tw`flex-row items-center px-4 py-4`}
-              activeOpacity={0.8}
-            >
-              <View
-                style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
-              >
-                <MaterialDesignIcons
-                  name="clock-outline"
-                  size={24}
-                  color={tw.color('offWhite')}
-                />
-              </View>
-              <View style={tw`flex-1`}>
-                <Text style={tw`text-offWhite text-base font-dmSemiBold`}>
-                  Reminder Time
-                </Text>
-                <Text style={tw`text-muted text-xs font-dmRegular mt-0.5`}>
-                  When should we remind you?
-                </Text>
-              </View>
-              <Text style={tw`text-darkGreen text-sm font-dmSemiBold`}>
-                {user?.notificationTime
-                  ? formatTimeForDisplay(user.notificationTime)
-                  : 'Not set'}
+            <View style={tw`flex-1`}>
+              <Text style={tw`text-offWhite text-base font-dmSemiBold`}>
+                Evening Reminder
               </Text>
-              <MaterialDesignIcons
-                name="chevron-right"
-                size={24}
-                color={tw.color('muted')}
-                style={tw`ml-1`}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <View style={tw`mt-auto`}>
-            <CommonButton
-              label="Log Out"
-              color="orange"
-              onPress={handleLogout}
+              <Text style={tw`text-muted text-xs font-dmRegular mt-0.5`}>
+                Daily push notification.
+              </Text>
+            </View>
+            <Switch
+              value={user?.notificationEnabled ?? false}
+              onValueChange={handleToggleReminder}
+              disabled={updating}
+              trackColor={{
+                false: tw.color('navyDark'),
+                true: tw.color('orange'),
+              }}
+              thumbColor={tw.color('offWhite')}
             />
           </View>
-        </ScrollView>
-      </View>
+
+          {/* Reminder Time row - tap to open picker */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ReminderTime')}
+            style={tw`flex-row items-center px-4 py-4`}
+            activeOpacity={0.8}
+          >
+            <View
+              style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
+            >
+              <MaterialDesignIcons
+                name="clock-outline"
+                size={24}
+                color={tw.color('offWhite')}
+              />
+            </View>
+            <View style={tw`flex-1`}>
+              <Text style={tw`text-offWhite text-base font-dmSemiBold`}>
+                Reminder Time
+              </Text>
+              <Text style={tw`text-muted text-xs font-dmRegular mt-0.5`}>
+                When should we remind you?
+              </Text>
+            </View>
+            <Text style={tw`text-darkGreen text-sm font-dmSemiBold`}>
+              {user?.notificationTime
+                ? formatTimeForDisplay(user.notificationTime)
+                : 'Not set'}
+            </Text>
+            <MaterialDesignIcons
+              name="chevron-right"
+              size={24}
+              color={tw.color('muted')}
+              style={tw`ml-1`}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={tw`mt-auto`}>
+          <CommonButton label="Log Out" color="orange" onPress={handleLogout} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
