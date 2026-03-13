@@ -105,7 +105,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
             <MaterialDesignIcons
               name="account-outline"
               size={20}
-              color={tw.color('muted') as string}
+              color={tw.color('muted')}
             />
           }
         />
@@ -122,7 +122,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
             <MaterialDesignIcons
               name="email-outline"
               size={20}
-              color={tw.color('muted') as string}
+              color={tw.color('muted')}
             />
           }
         />
@@ -139,7 +139,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
             <MaterialDesignIcons
               name="lock-outline"
               size={20}
-              color={tw.color('muted') as string}
+              color={tw.color('muted')}
             />
           }
           rightIcon={
@@ -147,7 +147,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
               <MaterialDesignIcons
                 name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
                 size={20}
-                color={tw.color('muted') as string}
+                color={tw.color('muted')}
               />
             </Pressable>
           }

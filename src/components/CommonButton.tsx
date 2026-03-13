@@ -84,7 +84,7 @@ const CommonButton: React.FC<Props> = ({
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={variant === 'filled' ? '#FFFFFF' : (tw.color(color) as string)}
+          color={variant === 'filled' ? '#FFFFFF' : tw.color(color)}
         />
       ) : (
         <Text style={tw`${textClasses}`}>{label}</Text>
