@@ -6,6 +6,7 @@ import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-
 import CommonButton from '../components/CommonButton';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 import useVoyage from '../hooks/useVoyage';
+import { formatDisplayDate } from '../utils/helpers';
 
 export const HomeScreen: React.FC = () => {
   const { voyage, analytics, getVoyageAll } = useVoyage({ showToasts: false });
@@ -13,15 +14,7 @@ export const HomeScreen: React.FC = () => {
 
   const today = voyage?.days?.[0];
 
-  const formattedDate = useMemo(
-    () =>
-      new Date().toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }),
-    [],
-  );
+  const formattedDate = useMemo(() => formatDisplayDate(new Date()), []);
 
   const loadVoyage = useCallback(async () => {
     try {

@@ -25,33 +25,30 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
   const [loadingAnalytics, setLoadingAnalytics] = useState(false);
   const [logging, setLogging] = useState(false);
 
-  const getVoyage = useCallback(
-    async (): Promise<Voyage | null> => {
-      try {
-        setLoadingVoyage(true);
-        const data = await getVoyageRequest();
-        setVoyage(data);
-        return data;
-      } catch (error: any) {
-        const message = error?.message || 'Unable to fetch voyage.';
-        if (showToasts) {
-          dispatch(
-            showToast({
-              type: 'error',
-              message,
-            }),
-          );
-        }
-        return null;
-      } finally {
-        setLoadingVoyage(false);
+  const getVoyage = useCallback(async (): Promise<Voyage | null> => {
+    try {
+      setLoadingVoyage(true);
+      const data = await getVoyageRequest();
+      setVoyage(data);
+      return data;
+    } catch (error: any) {
+      const message = error?.message || 'Unable to fetch voyage.';
+      if (showToasts) {
+        dispatch(
+          showToast({
+            type: 'error',
+            message,
+          }),
+        );
       }
-    },
-    [dispatch, showToasts],
-  );
+      return null;
+    } finally {
+      setLoadingVoyage(false);
+    }
+  }, [dispatch, showToasts]);
 
-  const getVoyageAnalytics = useCallback(
-    async (): Promise<VoyageAnalytics | null> => {
+  const getVoyageAnalytics =
+    useCallback(async (): Promise<VoyageAnalytics | null> => {
       try {
         setLoadingAnalytics(true);
         const data = await getVoyageAnalyticsRequest();
@@ -71,9 +68,7 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
       } finally {
         setLoadingAnalytics(false);
       }
-    },
-    [dispatch, showToasts],
-  );
+    }, [dispatch, showToasts]);
 
   const getVoyageAll = useCallback(async () => {
     try {
@@ -93,6 +88,7 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
     async (payload: PatchVoyageLogPayload): Promise<VoyageDay> => {
       try {
         setLogging(true);
+        console.log('payload', payload);
         const loggedDay = await patchVoyageLogRequest(payload);
 
         setVoyage(prev =>
