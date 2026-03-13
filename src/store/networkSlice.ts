@@ -20,5 +20,8 @@ const networkSlice = createSlice({
 
 export const { setIsOnline } = networkSlice.actions;
 
+export const selectIsOnline = (state: { network: NetworkState }) =>
+  state.network.isOnline;
+
 export default networkSlice.reducer;
 

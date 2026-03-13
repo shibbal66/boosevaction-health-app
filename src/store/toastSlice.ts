@@ -21,19 +21,21 @@ type ShowToastPayload = {
   message: string;
 };
 
-let toastIdCounter = 0;
+function createToastId(): number {
+  return Date.now() + Math.floor(Math.random() * 1000);
+}
 
 const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    showToast(state, action: PayloadAction<ShowToastPayload>) {
-      toastIdCounter += 1;
-      state.current = {
-        id: toastIdCounter,
-        type: action.payload.type,
-        message: action.payload.message,
-      };
+    showToast: {
+      prepare(payload: ShowToastPayload) {
+        return { payload: { ...payload, id: createToastId() } };
+      },
+      reducer(state, action: PayloadAction<ToastValue>) {
+        state.current = action.payload;
+      },
     },
     clearToast(state) {
       state.current = null;
@@ -42,6 +44,9 @@ const toastSlice = createSlice({
 });
 
 export const { showToast, clearToast } = toastSlice.actions;
+
+export const selectCurrentToast = (state: { toast: ToastState }) =>
+  state.toast.current;
 
 export default toastSlice.reducer;
 

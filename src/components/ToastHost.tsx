@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { View, Text } from 'react-native';
 import Toast from 'react-native-toast-message';
 import { useAppSelector } from '../store';
+import { selectCurrentToast } from '../store/toastSlice';
 import tw from '../../lib/tailwind';
 
 type ToastVariant = 'success' | 'error' | 'info';
@@ -63,8 +64,7 @@ const toastConfig = {
 };
 
 export const ToastHost: React.FC = () => {
-  const toastState = useAppSelector(state => state.toast);
-  const toast = toastState.current;
+  const toast = useAppSelector(selectCurrentToast);
   const lastIdRef = useRef<number | null>(null);
 
   const toastId = toast?.id;
