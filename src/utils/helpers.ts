@@ -17,6 +17,17 @@ export const toISODate = (d: Date) => {
   return `${y}-${m}-${day}`;
 };
 
+/** Format 24h "HH:mm" to 12h "h:mm A" (e.g. "20:00" -> "8:00 PM") */
+export const formatTimeForDisplay = (time24: string | null): string => {
+  if (!time24) return '';
+  const [h = '0', m = '0'] = time24.split(':');
+  const hour = parseInt(h, 10);
+  const minute = parseInt(m, 10);
+  const period = hour >= 12 ? 'PM' : 'AM';
+  const hour12 = hour % 12 || 12;
+  return `${hour12}:${String(minute).padStart(2, '0')} ${period}`;
+};
+
 /** Mood string to 1–5 score */
 export const moodToScore = (
   mood: 'TERRIBLE' | 'BAD' | 'OK' | 'GOOD' | 'GREAT' | null,

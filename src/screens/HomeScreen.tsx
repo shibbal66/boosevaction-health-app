@@ -1,5 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { View, Text } from 'react-native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import type { RootTabParamList } from '../navigation/types';
 import tw from '../../lib/tailwind';
 import GridBackground from '../components/GridBackground';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
@@ -8,7 +11,10 @@ import SpinningShipWheel from '../components/SpinningShipWheel';
 import useVoyage from '../hooks/useVoyage';
 import { formatDisplayDate } from '../utils/helpers';
 
+type HomeNav = BottomTabNavigationProp<RootTabParamList, 'Home'>;
+
 export const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<HomeNav>();
   const { voyage, analytics, getVoyageAll } = useVoyage({ showToasts: false });
   const [loading, setLoading] = useState(false);
 
@@ -25,33 +31,30 @@ export const HomeScreen: React.FC = () => {
     }
   }, [getVoyageAll]);
 
-  useEffect(() => {
-    loadVoyage();
-  }, [loadVoyage]);
+  useFocusEffect(
+    useCallback(() => {
+      loadVoyage();
+    }, [loadVoyage]),
+  );
 
   const handleLogHabitsPress = useCallback(() => {
-    // TODO: Navigate to habits logging screen when available
-  }, []);
+    navigation.navigate('Log');
+  }, [navigation]);
 
   return (
     <View style={tw`flex-1 bg-navy`}>
       <GridBackground />
       <SpinningShipWheel />
       <View style={tw`flex-1 px-4 py-15`}>
-        <View style={tw`flex-row items-center `}>
-          <MaterialDesignIcons
-            name="anchor"
-            size={24}
-            color={tw.color('offWhite')}
-          />
+        <View style={tw`flex-row items-center justify-center`}>
           <Text
-            style={tw`text-offWhite text-lg font-crimsonProRegular uppercase ml-2 tracking-widest`}
+            style={tw`text-offWhite text-heading font-playfairDisplayBold text-center`}
           >
             The Captain's Log
           </Text>
         </View>
         <Text
-          style={tw`text-offWhite text-base font-crimsonProRegular tracking-widest`}
+          style={tw`text-offWhite text-base font-crimsonProRegular tracking-widest text-center`}
         >
           {formattedDate}
         </Text>

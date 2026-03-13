@@ -5,8 +5,8 @@ import {
   HomeScreen,
   LogScreen,
   HistoryScreen,
-  SettingsScreen,
 } from '../screens';
+import SettingsStack from './SettingsStack';
 import type { RootTabParamList } from './types';
 import tw from '../../lib/tailwind';
 import {
@@ -58,7 +58,7 @@ const BottomTabNavigator: React.FC = () => {
       <Tab.Screen name={SCREEN_NAME_HOME} component={HomeScreen} />
       <Tab.Screen name={SCREEN_NAME_LOG} component={LogScreen} />
       <Tab.Screen name={SCREEN_NAME_HISTORY} component={HistoryScreen} />
-      <Tab.Screen name={SCREEN_NAME_SETTINGS} component={SettingsScreen} />
+      <Tab.Screen name={SCREEN_NAME_SETTINGS} component={SettingsStack} />
     </Tab.Navigator>
   );
 };

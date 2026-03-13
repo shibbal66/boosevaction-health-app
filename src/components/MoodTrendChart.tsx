@@ -28,14 +28,13 @@ export const MoodTrendChart: React.FC<MoodTrendChartProps> = ({
   const chartConfig = useMemo(
     () => ({
       backgroundColor: 'transparent',
-      backgroundGradientFrom: tw.color('navyMid') ?? '#1a3550',
-      backgroundGradientTo: tw.color('navyMid') ?? '#1a3550',
+      backgroundGradientFrom: tw.color('navyMid'),
+      backgroundGradientTo: tw.color('navyMid'),
       backgroundGradientFromOpacity: 1,
       backgroundGradientToOpacity: 1,
       decimalPlaces: 0,
-      color: (opacity = 1) =>
-        `rgba(46, 122, 140, ${opacity})` /* teal */,
-      labelColor: () => tw.color('muted') ?? '#7090aa',
+      color: (opacity = 1) => `rgba(46, 122, 140, ${opacity})` /* teal */,
+      labelColor: () => tw.color('muted'),
       style: { paddingRight: 0 },
       propsForLabels: { fontSize: 11 },
       yAxisSuffix: '',

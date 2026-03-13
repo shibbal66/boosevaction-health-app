@@ -4,3 +4,5 @@ export const SCREEN_NAME_HOME = 'Home';
 export const SCREEN_NAME_LOG = 'Log';
 export const SCREEN_NAME_HISTORY = 'History';
 export const SCREEN_NAME_SETTINGS = 'Settings';
+export const SCREEN_NAME_EDIT_PROFILE = 'EditProfile';
+export const SCREEN_NAME_REMINDER_TIME = 'ReminderTime';

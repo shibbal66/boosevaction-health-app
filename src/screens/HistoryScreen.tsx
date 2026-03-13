@@ -115,25 +115,8 @@ export const HistoryScreen: React.FC = () => {
         <GridBackground />
         <View style={tw`px-4 pt-2`}>
           {/* Header: anchor — VOYAGE LOG — anchor */}
-          <View style={tw`flex-row items-center justify-center gap-2 mb-1`}>
-            <MaterialDesignIcons
-              name="anchor"
-              size={20}
-              color={tw.color('muted')}
-            />
-            <Text
-              style={tw`text-muted text-xs font-dmSemiBold tracking-widest uppercase`}
-            >
-              VOYAGE LOG
-            </Text>
-            <MaterialDesignIcons
-              name="anchor"
-              size={20}
-              color={tw.color('muted')}
-            />
-          </View>
           <Text
-            style={tw`text-offWhite text-2xl font-dmSemiBold text-center mt-1`}
+            style={tw`text-offWhite text-heading font-playfairDisplayBold text-center mt-1`}
           >
             7-Day History
           </Text>
@@ -151,8 +134,7 @@ export const HistoryScreen: React.FC = () => {
           </Text>
           <View
             style={[
-              tw`rounded-xl border border-cardBorder overflow-hidden`,
-              { backgroundColor: tw.color('navyMid') ?? 'rgba(26,53,80,0.6)' },
+              tw`rounded-xl bg-navyMid border border-cardBorder overflow-hidden`,
             ]}
           >
             <Text
@@ -178,15 +160,16 @@ export const HistoryScreen: React.FC = () => {
               <View
                 key={day.dateStr}
                 style={[
-                  tw`flex-row items-center rounded-xl border border-cardBorder px-4 py-3`,
-                  {
-                    backgroundColor: tw.color('navyMid') ?? 'rgba(26,53,80,0.6)',
-                  },
+                  tw`flex-row items-center rounded-xl border border-cardBorder px-4 py-3  bg-orangeDim`,
                 ]}
               >
                 {/* Left: day number + label */}
-                <View style={tw`w-12 items-center mr-3`}>
-                  <Text style={tw`text-offWhite text-xl font-dmSemiBold`}>
+                <View
+                  style={tw`w-12 items-center pr-1 mr-3 border-r border-offWhite/20`}
+                >
+                  <Text
+                    style={tw`text-offWhite text-3xl font-playfairDisplayBold`}
+                  >
                     {day.dayNum}
                   </Text>
                   <Text
@@ -205,18 +188,13 @@ export const HistoryScreen: React.FC = () => {
                 <View style={tw`flex-1`}>
                   {day.record?.completed ? (
                     <>
-                      <Text
-                        style={tw`text-muted text-xs font-dmMedium mb-1`}
-                      >
-                        Mood
-                      </Text>
                       <View style={tw`flex-row items-center gap-2 mb-2`}>
                         <MaterialDesignIcons
                           name="anchor"
                           size={20}
                           color={
                             day.record.alcohol
-                              ? tw.color('tealLight')
+                              ? tw.color('orange')
                               : tw.color('muted')
                           }
                         />
@@ -225,7 +203,7 @@ export const HistoryScreen: React.FC = () => {
                           size={20}
                           color={
                             day.record.caffeine
-                              ? tw.color('tealLight')
+                              ? tw.color('orange')
                               : tw.color('muted')
                           }
                         />
@@ -234,23 +212,41 @@ export const HistoryScreen: React.FC = () => {
                           size={20}
                           color={
                             day.record.food
-                              ? tw.color('tealLight')
+                              ? tw.color('orange')
                               : tw.color('muted')
                           }
                         />
                       </View>
-                      <View
-                        style={tw`h-2 rounded-full overflow-hidden bg-navy/60`}
-                      >
+                      <View style={tw`flex-row items-center justify-between`}>
+                        <Text
+                          style={tw`text-offWhite text-sm font-dmMedium mb-1`}
+                        >
+                          Mood
+                        </Text>
                         <View
-                          style={[
-                            tw`h-full rounded-full`,
-                            {
-                              width: `${(moodToScore(day.record.mood) / MOOD_SCORE_MAX) * 100}%`,
-                              backgroundColor: tw.color('tealLight'),
-                            },
-                          ]}
-                        />
+                          style={tw`h-2 rounded-full overflow-hidden w-[70%] bg-navy/60`}
+                        >
+                          <View
+                            style={[
+                              tw`h-full rounded-full`,
+                              {
+                                width: `${
+                                  (moodToScore(day.record.mood) /
+                                    MOOD_SCORE_MAX) *
+                                  100
+                                }%`,
+                                backgroundColor: tw.color('tealLight'),
+                              },
+                            ]}
+                          />
+                        </View>
+                        {day.record?.completed && day.record.mood != null && (
+                          <Text
+                            style={tw`text-offWhite text-lg font-dmSemiBold`}
+                          >
+                            {moodToScore(day.record.mood)}
+                          </Text>
+                        )}
                       </View>
                     </>
                   ) : (
@@ -263,13 +259,6 @@ export const HistoryScreen: React.FC = () => {
                 </View>
 
                 {/* Right: mood score */}
-                {day.record?.completed && day.record.mood != null && (
-                  <View style={tw`w-8 items-end`}>
-                    <Text style={tw`text-offWhite text-lg font-dmSemiBold`}>
-                      {moodToScore(day.record.mood)}
-                    </Text>
-                  </View>
-                )}
               </View>
             ))}
           </View>
