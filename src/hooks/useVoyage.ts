@@ -3,6 +3,7 @@ import {
   getVoyageAnalyticsRequest,
   getVoyageRequest,
   patchVoyageLogRequest,
+  type GetVoyageParams,
   type PatchVoyageLogPayload,
   type Voyage,
   type VoyageAnalytics,
@@ -25,13 +26,14 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
   const [loadingAnalytics, setLoadingAnalytics] = useState(false);
   const [logging, setLogging] = useState(false);
 
-  const getVoyage = useCallback(async (): Promise<Voyage | null> => {
-    try {
-      setLoadingVoyage(true);
-      const data = await getVoyageRequest();
-      setVoyage(data);
-      return data;
-    } catch (error: any) {
+  const getVoyage = useCallback(
+    async (params?: GetVoyageParams): Promise<Voyage | null> => {
+      try {
+        setLoadingVoyage(true);
+        const data = await getVoyageRequest(params);
+        setVoyage(data);
+        return data;
+      } catch (error: any) {
       const message = error?.message || 'Unable to fetch voyage.';
       if (showToasts) {
         dispatch(
@@ -45,7 +47,9 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
     } finally {
       setLoadingVoyage(false);
     }
-  }, [dispatch, showToasts]);
+  },
+    [dispatch, showToasts],
+  );
 
   const getVoyageAnalytics =
     useCallback(async (): Promise<VoyageAnalytics | null> => {

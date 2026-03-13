@@ -55,8 +55,14 @@ type VoyageAnalyticsResponse = {
   data: VoyageAnalytics;
 };
 
-export const getVoyageRequest = async (): Promise<Voyage> => {
-  const response = await apiClient.get<VoyageResponse>(VOYAGE_URL);
+export type GetVoyageParams = {
+  limit?: number;
+};
+
+export const getVoyageRequest = async (
+  params?: GetVoyageParams,
+): Promise<Voyage> => {
+  const response = await apiClient.get<VoyageResponse>(VOYAGE_URL, { params });
   return response.data.data;
 };
 
