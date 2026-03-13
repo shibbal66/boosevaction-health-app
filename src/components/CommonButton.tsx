@@ -16,6 +16,7 @@ type Props = PressableProps & {
   variant?: ButtonVariant;
   color?: string;
   loading?: boolean;
+  onPress: () => void;
 };
 
 const CommonButton: React.FC<Props> = ({
@@ -25,7 +26,7 @@ const CommonButton: React.FC<Props> = ({
   color = 'orange',
   loading = false,
   disabled,
-  ...pressableProps
+  onPress,
 }) => {
   const isDisabled = loading || disabled;
 
@@ -69,6 +70,7 @@ const CommonButton: React.FC<Props> = ({
 
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={
         [
           tw`${buttonClasses}`,
