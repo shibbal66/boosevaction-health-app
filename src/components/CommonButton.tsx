@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   type PressableProps,
   type ViewStyle,
+  TouchableOpacity,
 } from 'react-native';
 import tw from '../../lib/tailwind';
 
@@ -67,10 +68,16 @@ const CommonButton: React.FC<Props> = ({
     : {};
 
   return (
-    <Pressable
-      {...pressableProps}
-      disabled={isDisabled}
-      style={[tw`${buttonClasses}`, shadowStyle, disabledStyle, style] as any}
+    <TouchableOpacity
+      style={
+        [
+          tw`${buttonClasses}`,
+          shadowStyle,
+          disabledStyle,
+          { pointerEvents: isDisabled ? 'none' : 'auto' },
+          style,
+        ] as any
+      }
     >
       {loading ? (
         <ActivityIndicator
@@ -80,7 +87,7 @@ const CommonButton: React.FC<Props> = ({
       ) : (
         <Text style={tw`${textClasses}`}>{label}</Text>
       )}
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

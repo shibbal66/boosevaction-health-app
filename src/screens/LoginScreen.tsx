@@ -16,6 +16,7 @@ import { saveAuthState } from '../services/authStorage';
 import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 import useUserProfile from '../hooks/useUserProfile';
+import { getDeviceTimezone } from '../utils/helpers';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -60,7 +61,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         user: data.user,
       });
 
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? null;
+      const timezone = getDeviceTimezone();
       if (timezone) {
         try {
           await patchUser({ timezone });

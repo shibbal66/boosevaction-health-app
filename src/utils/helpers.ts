@@ -43,3 +43,12 @@ export const moodToScore = (
   return map[mood] ?? 0;
 };
 
+/** Current device timezone as IANA string, or null if unavailable */
+export const getDeviceTimezone = (): string | null => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone ?? null;
+  } catch {
+    return null;
+  }
+};
+

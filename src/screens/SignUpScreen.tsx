@@ -17,6 +17,7 @@ import { signupRequest } from '../api/auth';
 import { getErrorMessage } from '../api/errors';
 import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
+import { getDeviceTimezone } from '../utils/helpers';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'SignUp'>;
 
@@ -46,10 +47,12 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
 
     try {
       setSubmitting(true);
+      const timezone = getDeviceTimezone();
       const result = await signupRequest(
         values.fullName,
         values.email,
         values.password,
+        timezone,
       );
 
       dispatch(

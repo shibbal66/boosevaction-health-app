@@ -42,11 +42,13 @@ export const signupRequest = async (
   name: string,
   email: string,
   password: string,
+  timezone: string | null,
 ): Promise<SignupResponse> => {
   const response = await apiClient.post<SignupResponse>(SIGNUP_URL, {
     name,
     email,
     password,
+    timezone,
   });
   return response.data;
 };
