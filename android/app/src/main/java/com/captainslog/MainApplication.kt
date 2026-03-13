@@ -1,4 +1,4 @@
-package com.boosevacation
+package com.captainslog
 
 import com.facebook.react.views.text.ReactFontManager
 
