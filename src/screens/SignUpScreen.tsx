@@ -14,6 +14,7 @@ import {
   validateFullName,
 } from '../../lib/validation';
 import { signupRequest } from '../api/auth';
+import { getErrorMessage } from '../api/errors';
 import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 
@@ -59,9 +60,11 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       );
 
       navigation.navigate('Login');
-    } catch (error: any) {
-      const message =
-        error?.message || 'Unable to create account. Please try again.';
+    } catch (error: unknown) {
+      const message = getErrorMessage(
+        error,
+        'Unable to create account. Please try again.',
+      );
 
       dispatch(
         showToast({

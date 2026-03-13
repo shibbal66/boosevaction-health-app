@@ -5,6 +5,7 @@ import {
   patchCurrentUserRequest,
   type PatchCurrentUserPayload,
 } from '../api/user';
+import { getErrorMessage } from '../api/errors';
 import { updateUser } from '../store/authSlice';
 import { showToast } from '../store/toastSlice';
 
@@ -27,8 +28,11 @@ const useUserProfile = (options: UseUserProfileOptions = {}) => {
         const freshUser = await getCurrentUserRequest();
         dispatch(updateUser(freshUser));
         return freshUser;
-      } catch (error: any) {
-        const message = error?.message || 'Unable to fetch user profile.';
+      } catch (error: unknown) {
+        const message = getErrorMessage(
+          error,
+          'Unable to fetch user profile.',
+        );
         if (showToasts) {
           dispatch(
             showToast({
@@ -60,8 +64,8 @@ const useUserProfile = (options: UseUserProfileOptions = {}) => {
           );
         }
         return updated;
-      } catch (error: any) {
-        const message = error?.message || 'Unable to update profile.';
+      } catch (error: unknown) {
+        const message = getErrorMessage(error, 'Unable to update profile.');
         if (showToasts) {
           dispatch(
             showToast({

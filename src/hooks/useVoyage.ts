@@ -9,6 +9,7 @@ import {
   type VoyageAnalytics,
   type VoyageDay,
 } from '../api/voyage';
+import { getErrorMessage } from '../api/errors';
 import { useAppDispatch } from '../store';
 import { showToast } from '../store/toastSlice';
 
@@ -33,18 +34,18 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
         const data = await getVoyageRequest(params);
         setVoyage(data);
         return data;
-      } catch (error: any) {
-      const message = error?.message || 'Unable to fetch voyage.';
-      if (showToasts) {
-        dispatch(
-          showToast({
-            type: 'error',
-            message,
-          }),
-        );
-      }
-      return null;
-    } finally {
+      } catch (error: unknown) {
+        const message = getErrorMessage(error, 'Unable to fetch voyage.');
+        if (showToasts) {
+          dispatch(
+            showToast({
+              type: 'error',
+              message,
+            }),
+          );
+        }
+        return null;
+      } finally {
       setLoadingVoyage(false);
     }
   },
@@ -58,8 +59,11 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
         const data = await getVoyageAnalyticsRequest();
         setAnalytics(data);
         return data;
-      } catch (error: any) {
-        const message = error?.message || 'Unable to fetch voyage analytics.';
+      } catch (error: unknown) {
+        const message = getErrorMessage(
+          error,
+          'Unable to fetch voyage analytics.',
+        );
         if (showToasts) {
           dispatch(
             showToast({
@@ -92,7 +96,6 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
     async (payload: PatchVoyageLogPayload): Promise<VoyageDay> => {
       try {
         setLogging(true);
-        console.log('payload', payload);
         const loggedDay = await patchVoyageLogRequest(payload);
 
         setVoyage(prev =>
@@ -116,8 +119,11 @@ const useVoyage = (options: UseVoyageOptions = {}) => {
         }
 
         return loggedDay;
-      } catch (error: any) {
-        const message = error?.message || 'Unable to update voyage log.';
+      } catch (error: unknown) {
+        const message = getErrorMessage(
+          error,
+          'Unable to update voyage log.',
+        );
         if (showToasts) {
           dispatch(
             showToast({

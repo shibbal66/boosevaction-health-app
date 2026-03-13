@@ -11,6 +11,7 @@ import CommonButton from '../components/CommonButton';
 import useFormValidation from '../hooks/useFormValidation';
 import { validateEmail, validatePassword } from '../../lib/validation';
 import { loginRequest } from '../api/auth';
+import { getErrorMessage } from '../api/errors';
 import { saveAuthState } from '../services/authStorage';
 import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
@@ -67,8 +68,11 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
           // ignore timezone update failures on login
         }
       }
-    } catch (error: any) {
-      const message = error?.message || 'Unable to log in. Please try again.';
+    } catch (error: unknown) {
+      const message = getErrorMessage(
+        error,
+        'Unable to log in. Please try again.',
+      );
 
       dispatch(
         showToast({
