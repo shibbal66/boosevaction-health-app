@@ -71,7 +71,7 @@ export const SettingsScreen: React.FC = () => {
         >
           <View style={tw`flex-row items-center p-4`}>
             <View
-              style={tw`w-14 h-14 rounded-2xl bg-navyLight items-center justify-center mr-4`}
+              style={tw`w-14 h-14 rounded-2xl bg-navyDark items-center justify-center mr-4`}
             >
               <MaterialDesignIcons
                 name="anchor"
@@ -121,7 +121,7 @@ export const SettingsScreen: React.FC = () => {
             style={tw`flex-row items-center px-4 py-4 border-b border-cardBorder`}
           >
             <View
-              style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
+              style={tw`w-12 h-12 rounded-2xl bg-navyDark items-center justify-center mr-3`}
             >
               <MaterialDesignIcons
                 name="bell"
@@ -156,7 +156,7 @@ export const SettingsScreen: React.FC = () => {
             activeOpacity={0.8}
           >
             <View
-              style={tw`w-12 h-12 rounded-2xl bg-navyLight items-center justify-center mr-3`}
+              style={tw`w-12 h-12 rounded-2xl bg-navyDark items-center justify-center mr-3`}
             >
               <MaterialDesignIcons
                 name="clock-outline"

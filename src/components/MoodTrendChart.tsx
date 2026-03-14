@@ -28,8 +28,8 @@ export const MoodTrendChart: React.FC<MoodTrendChartProps> = ({
   const chartConfig = useMemo(
     () => ({
       backgroundColor: 'transparent',
-      backgroundGradientFrom: tw.color('navyMid'),
-      backgroundGradientTo: tw.color('navyMid'),
+      backgroundGradientFrom: tw.color('navyDark'),
+      backgroundGradientTo: tw.color('navyDark'),
       backgroundGradientFromOpacity: 1,
       backgroundGradientToOpacity: 1,
       decimalPlaces: 0,

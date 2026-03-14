@@ -1,10 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  useWindowDimensions,
-} from 'react-native';
+import { View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
@@ -135,7 +130,7 @@ export const HistoryScreen: React.FC = () => {
           </Text>
           <View
             style={[
-              tw`rounded-xl bg-navyMid border border-cardBorder overflow-hidden`,
+              tw`rounded-xl bg-navyDark border border-cardBorder overflow-hidden`,
             ]}
           >
             <Text

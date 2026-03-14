@@ -28,7 +28,7 @@ const LabeledInput: React.FC<Props> = ({
       </Text>
       <View
         style={[
-          tw`flex-row items-center rounded-lg bg-tealDim border`,
+          tw`flex-row items-center rounded-lg bg-teal/10 border`,
           errorMessage ? tw`border-red` : tw`border-cardBorder`,
         ]}
       >
@@ -36,7 +36,7 @@ const LabeledInput: React.FC<Props> = ({
         <TextInput
           {...textInputProps}
           style={[tw`flex-1 px-3 py-4 text-offWhite`, style]}
-          placeholderTextColor={tw.color('muted2')}
+          placeholderTextColor={tw.color('muted')}
         />
         {rightIcon ? <View style={tw`pr-3 pl-2`}>{rightIcon}</View> : null}
       </View>
