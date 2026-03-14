@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
+import colors from '../utils/colors';
 
 const GRID_SIZE = 28;
-const GRID_COLOR = 'rgba(46,122,140,0.05)';
+const GRID_COLOR = colors.teal;
 
 export const GridBackground: React.FC = () => {
   const { width, height } = Dimensions.get('window');
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: 1,
     backgroundColor: GRID_COLOR,
+    opacity: 0.05,
   },
   horizontalLine: {
     position: 'absolute',
@@ -45,6 +47,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 1,
     backgroundColor: GRID_COLOR,
+    opacity: 0.05,
   },
 });
 

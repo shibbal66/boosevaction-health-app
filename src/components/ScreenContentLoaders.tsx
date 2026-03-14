@@ -2,9 +2,10 @@ import React from 'react';
 import { View } from 'react-native';
 import ContentLoader, { Rect, Circle } from 'react-content-loader/native';
 import tw from '../../lib/tailwind';
+import colors from '../utils/colors';
 
-const backgroundColor = '#1a3550'; // navyMid
-const foregroundColor = '#254e72'; // navyLight / shimmer
+const backgroundColor = colors.navyDark;
+const foregroundColor = colors.navy;
 
 export function HomeContentLoader() {
   return (
