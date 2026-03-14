@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Easing } from 'react-native';
 import tw from '../../lib/tailwind';
 import ShipWheel from '../assets/icons/ShipWheel';
+import colors from '../utils/colors';
 
 type Props = {
   color?: string;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const SpinningShipWheel: React.FC<Props> = ({
-  color = 'rgba(255,255,255,0.03)',
+  color = colors.cardBg,
   width = 400,
   height = 400,
   duration = 20000,
@@ -37,9 +38,7 @@ const SpinningShipWheel: React.FC<Props> = ({
   });
 
   return (
-    <Animated.View
-      style={[tw`${style}`, { transform: [{ rotate: spin }] }]}
-    >
+    <Animated.View style={[tw`${style}`, { transform: [{ rotate: spin }] }]}>
       <ShipWheel color={color} width={width} height={height} />
     </Animated.View>
   );
