@@ -15,7 +15,7 @@ import { formatDisplayDate, formatTimeForDisplay } from '../utils/helpers';
 import type { SettingsStackParamList } from '../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
+type Nav = NativeStackNavigationProp<SettingsStackParamList, 'SettingsMain'>;
 
 export const SettingsScreen: React.FC = () => {
   const navigation = useNavigation<Nav>();
@@ -53,7 +53,7 @@ export const SettingsScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={tw`flex-1 bg-navy`}>
+    <SafeAreaView style={tw`flex-1 bg-navy`} edges={['top']}>
       <GridBackground />
       <ScrollView
         style={tw`flex-1`}

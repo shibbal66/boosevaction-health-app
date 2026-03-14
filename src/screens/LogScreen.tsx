@@ -10,6 +10,7 @@ import { formatDisplayDate } from '../utils/helpers';
 import CommonButton from '../components/CommonButton';
 import type { VoyageMood } from '../api/voyage';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { LogContentLoader } from '../components/ScreenContentLoaders';
 
 export const LogScreen: React.FC = () => {
   const [mood, setMood] = React.useState<number>(4);
@@ -21,10 +22,12 @@ export const LogScreen: React.FC = () => {
   });
 
   const today = voyage?.days?.[0] ?? null;
+  const [loading, setLoading] = useState(true);
 
   const isCompleted = !!today?.completed;
+
   useEffect(() => {
-    getVoyageAll();
+    getVoyageAll().finally(() => setLoading(false));
   }, [getVoyageAll]);
 
   useEffect(() => {
@@ -78,9 +81,17 @@ export const LogScreen: React.FC = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <SafeAreaView style={tw`flex-1 bg-navy`} edges={['top']}>
+        <LogContentLoader />
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <SafeAreaView style={tw`flex-1 bg-navy`}>
-      <ScrollView style={tw`flex-1 bg-navy`}>
+    <ScrollView style={tw`flex-1`}>
+      <SafeAreaView style={tw`flex-1 bg-navy`}>
         <GridBackground />
         <View style={tw`flex-1 px-4`}>
           {/* Today's Log header above Today's Habits */}
@@ -174,8 +185,8 @@ export const LogScreen: React.FC = () => {
             </View>
           )}
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

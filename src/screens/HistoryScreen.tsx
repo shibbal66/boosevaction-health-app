@@ -4,8 +4,8 @@ import {
   Text,
   ScrollView,
   useWindowDimensions,
-  ActivityIndicator,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import tw from '../../lib/tailwind';
@@ -14,6 +14,7 @@ import MoodTrendChart from '../components/MoodTrendChart';
 import useVoyage from '../hooks/useVoyage';
 import { formatShortDateRange, moodToScore, toISODate } from '../utils/helpers';
 import type { VoyageDay } from '../api/voyage';
+import { HistoryContentLoader } from '../components/ScreenContentLoaders';
 
 const MOOD_SCORE_MAX = 5;
 
@@ -69,9 +70,11 @@ export const HistoryScreen: React.FC = () => {
     await getVoyage({ limit: 7 });
   }, [getVoyage]);
 
-  React.useEffect(() => {
-    fetchHistory();
-  }, [fetchHistory]);
+  useFocusEffect(
+    useCallback(() => {
+      fetchHistory();
+    }, [fetchHistory]),
+  );
 
   const daysForDisplay = useMemo(() => {
     const base = getLast7Days();
@@ -97,10 +100,8 @@ export const HistoryScreen: React.FC = () => {
 
   if (loadingVoyage && !voyage) {
     return (
-      <SafeAreaView style={tw`flex-1 bg-navy`}>
-        <View style={tw`flex-1 items-center justify-center`}>
-          <ActivityIndicator size="large" color={tw.color('teal')} />
-        </View>
+      <SafeAreaView style={tw`flex-1 bg-navy`} edges={['top']}>
+        <HistoryContentLoader />
       </SafeAreaView>
     );
   }

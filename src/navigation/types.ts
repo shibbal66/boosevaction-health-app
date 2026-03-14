@@ -6,7 +6,7 @@ export type RootTabParamList = {
 };
 
 export type SettingsStackParamList = {
-  Settings: undefined;
+  SettingsMain: undefined;
   EditProfile: undefined;
   ReminderTime: undefined;
 };

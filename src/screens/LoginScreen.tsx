@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import tw from '../../lib/tailwind';
 import { MaterialDesignIcons } from '@react-native-vector-icons/material-design-icons';
@@ -87,8 +93,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <View style={tw`flex-1 justify-center px-6 bg-navyDark`}>
-      <SpinningShipWheel style="absolute top-[30%] right-[0%]" />
+    <KeyboardAvoidingView
+      style={tw`flex-1 bg-navyDark`}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <View style={tw`flex-1 justify-center px-6`}>
+        <SpinningShipWheel style="absolute top-[30%] right-[0%]" />
       <Text
         style={tw`text-heading font-playfairDisplayBlack text-offWhite mb-1 text-center leading-tight`}
       >
@@ -159,7 +169,8 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
           </Text>
         </Pressable>
       </Text>
-    </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 

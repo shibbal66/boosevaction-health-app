@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { View, Text, ScrollView } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import type { RootTabParamList } from '../navigation/types';
@@ -10,25 +10,21 @@ import CommonButton from '../components/CommonButton';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 import useVoyage from '../hooks/useVoyage';
 import { formatDisplayDate } from '../utils/helpers';
+import { HomeContentLoader } from '../components/ScreenContentLoaders';
 
 type HomeNav = BottomTabNavigationProp<RootTabParamList, 'Home'>;
 
 export const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeNav>();
-  const { voyage, analytics, getVoyageAll } = useVoyage({ showToasts: false });
-  const [loading, setLoading] = useState(false);
+  const { voyage, analytics, getVoyageAll, loadingVoyage, loadingAnalytics } =
+    useVoyage({ showToasts: false });
 
   const today = voyage?.days?.[0];
 
   const formattedDate = useMemo(() => formatDisplayDate(new Date()), []);
 
   const loadVoyage = useCallback(async () => {
-    try {
-      setLoading(true);
-      await getVoyageAll();
-    } finally {
-      setLoading(false);
-    }
+    await getVoyageAll();
   }, [getVoyageAll]);
 
   useFocusEffect(
@@ -41,11 +37,20 @@ export const HomeScreen: React.FC = () => {
     navigation.navigate('Log');
   }, [navigation]);
 
+  const loading = loadingVoyage || loadingAnalytics;
+  if (loading && !voyage) {
+    return <HomeContentLoader />;
+  }
+
   return (
     <View style={tw`flex-1 bg-navy`}>
       <GridBackground />
       <SpinningShipWheel />
-      <View style={tw`flex-1 px-4 py-15`}>
+      <ScrollView
+        style={tw`flex-1`}
+        contentContainerStyle={tw`px-4 py-15 flex-grow`}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={tw`flex-row items-center justify-center`}>
           <Text
             style={tw`text-offWhite text-heading font-playfairDisplayBold text-center`}
@@ -235,7 +240,7 @@ export const HomeScreen: React.FC = () => {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
