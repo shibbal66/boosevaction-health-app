@@ -28,11 +28,14 @@ function App() {
       console.error('Notification permission denied ❌');
     }
   };
-  requestPermission();
 
   messaging().onMessage(async remoteMessage => {
     console.log('Notification received!', remoteMessage);
   });
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
 
   useEffect(() => {
     let unsubscribeNetwork: (() => void) | undefined;

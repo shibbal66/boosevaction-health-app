@@ -23,7 +23,7 @@ import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 import useUserProfile from '../hooks/useUserProfile';
 import { getDeviceTimezone } from '../utils/helpers';
-import { ensureFcmToken } from '../utils/fcm';
+import { requestNotificationPermissionAndFcmToken } from '../utils/fcm';
 import type { PatchCurrentUserPayload } from '../api/user';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
@@ -70,18 +70,20 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       });
 
       const timezone = getDeviceTimezone();
-      const fcmToken = await ensureFcmToken();
+      const { enabled: notificationsEnabled, token: fcmToken } =
+        await requestNotificationPermissionAndFcmToken();
 
       const patchPayload: PatchCurrentUserPayload = {};
       if (timezone) patchPayload.timezone = timezone;
-      if (fcmToken) patchPayload.fcmToken = fcmToken;
+      // Persist the user's OS-level notification decision to backend.
+      patchPayload.notificationEnabled = notificationsEnabled;
+      patchPayload.fcmToken = fcmToken;
+      console.log('patchPayload', patchPayload);
 
-      if (Object.keys(patchPayload).length > 0) {
-        try {
-          await patchUser(patchPayload);
-        } catch {
-          // Non-fatal: allow login even if user update fails.
-        }
+      try {
+        await patchUser(patchPayload);
+      } catch {
+        // Non-fatal: allow login even if user update fails.
       }
     } catch (error: unknown) {
       const message = getErrorMessage(

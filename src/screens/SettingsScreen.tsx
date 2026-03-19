@@ -1,5 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Switch } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  AppState,
+  ScrollView,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
@@ -14,18 +21,46 @@ import { clearAuthState } from '../services/authStorage';
 import { formatDisplayDate, formatTimeForDisplay } from '../utils/helpers';
 import type { SettingsStackParamList } from '../navigation/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ensureFcmToken, isNotificationPermissionEnabled } from '../utils/fcm';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'SettingsMain'>;
 
 export const SettingsScreen: React.FC = () => {
   const navigation = useNavigation<Nav>();
   const dispatch = useAppDispatch();
-  const { user, patchUser, updating } = useUserProfile({ showToasts: true });
+  const { user, patchUser, updating, getUserProfile } = useUserProfile({
+    showToasts: true,
+  });
   const { voyage, getVoyage } = useVoyage({ showToasts: false });
+  const [notificationsPermissionEnabled, setNotificationsPermissionEnabled] =
+    useState(false);
 
   useEffect(() => {
+    getUserProfile();
     getVoyage();
-  }, [getVoyage]);
+  }, [getUserProfile, getVoyage]);
+
+  useEffect(() => {
+    const syncNotificationPermission = async () => {
+      const enabled = await isNotificationPermissionEnabled();
+      setNotificationsPermissionEnabled(enabled);
+    };
+
+    syncNotificationPermission();
+
+    const appStateSubscription = AppState.addEventListener(
+      'change',
+      nextAppState => {
+        if (nextAppState === 'active') {
+          syncNotificationPermission();
+        }
+      },
+    );
+
+    return () => {
+      appStateSubscription.remove();
+    };
+  }, []);
 
   const voyageStartText = voyage?.startDate
     ? `Voyage started ${formatDisplayDate(new Date(voyage.startDate))}.`
@@ -34,8 +69,10 @@ export const SettingsScreen: React.FC = () => {
   const handleToggleReminder = useCallback(
     async (value: boolean) => {
       try {
+        const fcmToken = value ? await ensureFcmToken() : undefined;
         await patchUser({
           notificationEnabled: value,
+          ...(value ? { fcmToken: fcmToken ?? null } : {}),
           ...(value && !user?.notificationTime
             ? { notificationTime: '20:00' }
             : {}),
@@ -140,7 +177,7 @@ export const SettingsScreen: React.FC = () => {
             <Switch
               value={user?.notificationEnabled ?? false}
               onValueChange={handleToggleReminder}
-              disabled={updating}
+              disabled={updating || !notificationsPermissionEnabled}
               trackColor={{
                 false: tw.color('navyDark'),
                 true: tw.color('orange'),
@@ -148,6 +185,14 @@ export const SettingsScreen: React.FC = () => {
               thumbColor={tw.color('offWhite')}
             />
           </View>
+          {!notificationsPermissionEnabled ? (
+            <View style={tw`px-4 pb-3`}>
+              <Text style={tw`text-muted text-xs font-dmRegular`}>
+                Enable notifications from your device settings to turn on this
+                reminder.
+              </Text>
+            </View>
+          ) : null}
 
           {/* Reminder Time row - tap to open picker */}
           <TouchableOpacity
