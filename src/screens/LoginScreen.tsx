@@ -23,6 +23,8 @@ import { showToast } from '../store/toastSlice';
 import SpinningShipWheel from '../components/SpinningShipWheel';
 import useUserProfile from '../hooks/useUserProfile';
 import { getDeviceTimezone } from '../utils/helpers';
+import { ensureFcmToken } from '../utils/fcm';
+import type { PatchCurrentUserPayload } from '../api/user';
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Login'>;
 
@@ -68,11 +70,17 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
       });
 
       const timezone = getDeviceTimezone();
-      if (timezone) {
+      const fcmToken = await ensureFcmToken();
+
+      const patchPayload: PatchCurrentUserPayload = {};
+      if (timezone) patchPayload.timezone = timezone;
+      if (fcmToken) patchPayload.fcmToken = fcmToken;
+
+      if (Object.keys(patchPayload).length > 0) {
         try {
-          await patchUser({ timezone });
+          await patchUser(patchPayload);
         } catch {
-          // ignore timezone update failures on login
+          // Non-fatal: allow login even if user update fails.
         }
       }
     } catch (error: unknown) {
@@ -99,76 +107,76 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
     >
       <View style={tw`flex-1 justify-center px-6`}>
         <SpinningShipWheel style="absolute top-[30%] right-[0%]" />
-      <Text
-        style={tw`text-heading font-playfairDisplayBlack text-offWhite mb-1 text-center leading-tight`}
-      >
-        Welcome{'\n'}Back, Captain
-      </Text>
-      <Text
-        style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}
-      >
-        Your Voyage Continue Here
-      </Text>
+        <Text
+          style={tw`text-heading font-playfairDisplayBlack text-offWhite mb-1 text-center leading-tight`}
+        >
+          Welcome{'\n'}Back, Captain
+        </Text>
+        <Text
+          style={tw`text-muted text-center font-bold italic font-crimsonProMedium text-sm`}
+        >
+          Your Voyage Continue Here
+        </Text>
 
-      <LabeledInput
-        label="Email"
-        value={values.email}
-        onChangeText={text => setFieldValue('email', text)}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        placeholder="you@example.com"
-        errorMessage={errors.email}
-        leftIcon={
-          <MaterialDesignIcons
-            name="email-outline"
-            size={20}
-            color={tw.color('muted')}
-          />
-        }
-      />
-
-      <LabeledInput
-        label="Password"
-        value={values.password}
-        onChangeText={text => setFieldValue('password', text)}
-        secureTextEntry={!passwordVisible}
-        placeholder="••••••••"
-        containerClassName="mb-6"
-        errorMessage={errors.password}
-        leftIcon={
-          <MaterialDesignIcons
-            name="lock-outline"
-            size={20}
-            color={tw.color('muted')}
-          />
-        }
-        rightIcon={
-          <Pressable onPress={() => setPasswordVisible(prev => !prev)}>
+        <LabeledInput
+          label="Email"
+          value={values.email}
+          onChangeText={text => setFieldValue('email', text)}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          placeholder="you@example.com"
+          errorMessage={errors.email}
+          leftIcon={
             <MaterialDesignIcons
-              name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
+              name="email-outline"
               size={20}
               color={tw.color('muted')}
             />
-          </Pressable>
-        }
-      />
+          }
+        />
 
-      <CommonButton
-        onPress={handleLogin}
-        label="Set Sail"
-        variant="filled"
-        loading={submitting}
-      />
-      <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
-        New to voyage?{' '}
-        <Pressable onPress={() => navigation.navigate('SignUp')}>
-          <Text
-            style={tw`text-tealLight font-dmRegular text-sm -mb-1 border-b border-tealLight`}
-          >
-            Create an account
-          </Text>
-        </Pressable>
-      </Text>
+        <LabeledInput
+          label="Password"
+          value={values.password}
+          onChangeText={text => setFieldValue('password', text)}
+          secureTextEntry={!passwordVisible}
+          placeholder="••••••••"
+          containerClassName="mb-6"
+          errorMessage={errors.password}
+          leftIcon={
+            <MaterialDesignIcons
+              name="lock-outline"
+              size={20}
+              color={tw.color('muted')}
+            />
+          }
+          rightIcon={
+            <Pressable onPress={() => setPasswordVisible(prev => !prev)}>
+              <MaterialDesignIcons
+                name={passwordVisible ? 'eye-off-outline' : 'eye-outline'}
+                size={20}
+                color={tw.color('muted')}
+              />
+            </Pressable>
+          }
+        />
+
+        <CommonButton
+          onPress={handleLogin}
+          label="Set Sail"
+          variant="filled"
+          loading={submitting}
+        />
+        <Text style={tw`text-center font-dmRegular text-muted text-sm`}>
+          New to voyage?{' '}
+          <Pressable onPress={() => navigation.navigate('SignUp')}>
+            <Text
+              style={tw`text-tealLight font-dmRegular text-sm -mb-1 border-b border-tealLight`}
+            >
+              Create an account
+            </Text>
+          </Pressable>
+        </Text>
       </View>
     </KeyboardAvoidingView>
   );

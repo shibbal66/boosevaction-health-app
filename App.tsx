@@ -1,4 +1,4 @@
-import { StatusBar, useColorScheme } from 'react-native';
+import { Alert, StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import { useEffect, useState } from 'react';
@@ -10,10 +10,29 @@ import { initializeNetworkListener } from './src/services/network';
 import { loadAuthState } from './src/services/authStorage';
 import { setCredentials } from './src/store/authSlice';
 import ToastHost from './src/components/ToastHost';
+import messaging from '@react-native-firebase/messaging';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const [isBootstrapped, setIsBootstrapped] = useState(false);
+
+  const requestPermission = async () => {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+
+    if (enabled) {
+      console.log('Notification permission granted ✅');
+    } else {
+      console.error('Notification permission denied ❌');
+    }
+  };
+  requestPermission();
+
+  messaging().onMessage(async remoteMessage => {
+    console.log('Notification received!', remoteMessage);
+  });
 
   useEffect(() => {
     let unsubscribeNetwork: (() => void) | undefined;
