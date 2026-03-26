@@ -15,7 +15,7 @@ import type { AuthStackParamList } from '../navigation/AuthNavigator';
 import LabeledInput from '../components/LabeledInput';
 import CommonButton from '../components/CommonButton';
 import useFormValidation from '../hooks/useFormValidation';
-import { validateEmail, validatePassword } from '../../lib/validation';
+import { validateEmail, validatePassword } from '../utils/validation';
 import { loginRequest } from '../api/auth';
 import { getErrorMessage } from '../api/errors';
 import { saveAuthState } from '../services/authStorage';
